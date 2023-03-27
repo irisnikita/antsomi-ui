@@ -14,11 +14,11 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  viewMode: "docs",
   options: {
     storySort: {
       order: ["Home", ["Overview", "Installation", "Usage"], "Components"],
     },
-    viewMode: "docs",
   },
 };
 
