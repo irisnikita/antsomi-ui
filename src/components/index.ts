@@ -7,4 +7,6 @@ export { Divider } from './Divider';
 export { Tooltip } from './Tooltip';
 export { Dropdown } from './Dropdown';
 export { Input } from './Input';
+export { Select } from './Select';
+export { Cascader } from './Cascader';
 export { ConfigProvider } from './ConfigProvider';

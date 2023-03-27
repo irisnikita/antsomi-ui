@@ -1,5 +1,9 @@
 // Types
-import { ThemeConfig } from 'antd';
+import { theme, ThemeConfig } from 'antd';
+
+// Variables
+const { defaultAlgorithm, defaultSeed } = theme;
+const mapToken = defaultAlgorithm(defaultSeed);
 
 type TTheme = {
   token?: ThemeConfig['token'] & { [key: string]: any },
@@ -11,6 +15,9 @@ type TTheme = {
 
 export const THEME: TTheme = {
   token: {
+    ...mapToken,
+    colorText: '#000000',
+    colorTextPlaceholder: '#BEBEBE',
     colorError: '#CF1825',
     colorPrimary: '#005fb8',
     colorLink: '#005fb8',
@@ -20,7 +27,7 @@ export const THEME: TTheme = {
     fontSize: 12,
     controlHeight: 30,
     blue: '#F2F9FF',
-    blue1: '#CAE5FE',
+    blue1: '#B8CFE6',
     blue2: '#A6D1FA',
     blue3: '#81BCF4',
     blue4: '#5DA6EB',
@@ -44,16 +51,27 @@ export const THEME: TTheme = {
     bw7: '#7F7F7F',
     bw8: '#595959',
     bw9: '#2D2D2D',
+    bw10: '#000000',
   },
 };
 
 THEME.components = {
   Button: {
     paddingContentHorizontal: 10,
-    colorBorder: '#B8CFE6',
-    colorText: '#005fb8',
+    colorBorder: THEME.token?.blue1,
+    colorText: THEME.token?.colorPrimary,
     colorBgTextHover: THEME.token?.blue,
     colorBgContainerDisabled: THEME.token?.bw6,
     colorTextDisabled: THEME.token?.bw0,
+  },
+  Input: {
+    controlHeight: 32,
+    colorBgContainerDisabled: THEME.token?.bw2,
+    colorTextDisabled: THEME.token?.bw10,
+    borderRadius: 0,
+    borderRadiusLG: 0,
+    borderRadiusSM: 0,
+    borderRadiusOuter: 0,
+    borderRadiusXS: 0,
   },
 };

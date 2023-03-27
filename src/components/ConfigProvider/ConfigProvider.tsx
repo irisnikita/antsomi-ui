@@ -30,6 +30,7 @@ const ConfigProvider: React.FC<ConfigProviderProps> = (props) => {
 
 ConfigProvider.defaultProps = {
   theme: THEME,
+  prefixCls: 'antsomi',
 };
 
 export default ConfigProvider;
