@@ -4,6 +4,7 @@ import { theme, ThemeConfig } from 'antd';
 // Variables
 const { defaultAlgorithm, defaultSeed } = theme;
 const mapToken = defaultAlgorithm(defaultSeed);
+const { gold1, gold6 } = mapToken;
 
 type TTheme = {
   token?: ThemeConfig['token'] & { [key: string]: any },
@@ -15,7 +16,6 @@ type TTheme = {
 
 export const THEME: TTheme = {
   token: {
-    ...mapToken,
     colorText: '#000000',
     colorTextPlaceholder: '#BEBEBE',
     colorError: '#CF1825',
@@ -52,6 +52,8 @@ export const THEME: TTheme = {
     bw8: '#595959',
     bw9: '#2D2D2D',
     bw10: '#000000',
+    gold1,
+    gold6,
   },
 };
 
