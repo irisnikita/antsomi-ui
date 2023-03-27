@@ -6,4 +6,5 @@ export { Radio } from './Radio';
 export { Divider } from './Divider';
 export { Tooltip } from './Tooltip';
 export { Dropdown } from './Dropdown';
+export { Input } from './Input';
 export { ConfigProvider } from './ConfigProvider';
