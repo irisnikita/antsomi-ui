@@ -1,6 +1,6 @@
 {
   "name": "@antscorp/antsomi-ui",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "An enterprise-class UI design language and React UI library.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -15,8 +15,9 @@
     "lint": "yarn run eslint src",
     "lint:fix": "yarn run eslint src --fix",
     "prepare": "husky install",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook",
+    "serve-storybook": "serve storybook-static"
   },
   "husky": {
     "hooks": {
