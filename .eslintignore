@@ -2,3 +2,6 @@ index.html
 .eslintignore
 .eslintrc.js
 rollup.config.mjs
+vite.config.ts
+webpack.config.js
+

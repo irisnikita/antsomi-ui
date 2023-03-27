@@ -8,11 +8,14 @@ import postcss from "rollup-plugin-postcss";
 
 import { terser } from "rollup-plugin-terser";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
+import { typescriptPaths } from "rollup-plugin-typescript-paths";
+
 import image from "@rollup/plugin-image";
 
 export default [
   {
     input: "src/index.ts",
+    external: ["react", "react-dom"],
     output: [
       {
         file: "dist/cjs/index.js",

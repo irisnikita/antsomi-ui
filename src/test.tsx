@@ -1,20 +1,21 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 
-import ConfigProvider from './configProvider';
+// Test Components
+import TestButton from './components/Button/test';
 
-import { Button } from './index';
+import '@antscorp/icons/main.css';
+import { ConfigProvider } from './components';
 
 export const App = () => (
-  <div>
-    <Button />
-  </div>
+  <TestButton />
 );
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+ReactDOM.render(
   <React.StrictMode>
     <ConfigProvider>
       <App />
     </ConfigProvider>
   </React.StrictMode>,
+  document.getElementById('root'),
 );
