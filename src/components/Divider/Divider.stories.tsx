@@ -111,9 +111,9 @@ export const Vertical: ComponentStory<any> = () => (
   <>
     Text Vertical
     <Divider type="vertical" />
-    <a href="#">Link 1</a>
+    <a href="#">Link 1 123</a>
     <Divider type="vertical" />
-    <a href="#">Link 2</a>
+    <a href="#">Link 2 234312</a>
   </>
 );
 
