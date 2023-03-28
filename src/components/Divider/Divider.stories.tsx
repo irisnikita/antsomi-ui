@@ -106,3 +106,21 @@ TextWithoutHeadingStyle.parameters = {
     },
   },
 };
+
+export const Vertical: ComponentStory<any> = () => (
+  <>
+    Text
+    <Divider type="vertical" />
+    <a href="#">Link</a>
+    <Divider type="vertical" />
+    <a href="#">Link</a>
+  </>
+);
+
+Vertical.parameters = {
+  docs: {
+    description: {
+      story: 'Use `type="vertical"` make it vertical.',
+    },
+  },
+};
