@@ -109,7 +109,7 @@ TextWithoutHeadingStyle.parameters = {
 
 export const Vertical: ComponentStory<any> = () => (
   <>
-    Text
+    Text Vertical
     <Divider type="vertical" />
     <a href="#">Link</a>
     <Divider type="vertical" />
