@@ -6,7 +6,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 // Components
 import { Input } from './Input';
 import {
-  Space, Select,
+  Space,
 } from '../index';
 
 // Types
@@ -273,6 +273,16 @@ Status.parameters = {
   docs: {
     description: {
       story: 'Add status to Input with status, which could be error or warning.',
+    },
+  },
+};
+
+export const BorderLess: ComponentStory<any> = () => <Input placeholder="Borderless" bordered={false} />;
+
+BorderLess.parameters = {
+  docs: {
+    description: {
+      story: 'No border.',
     },
   },
 };
