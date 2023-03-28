@@ -44,7 +44,7 @@ export const Default = Template.bind({});
 
 Default.args = {};
 
-export const Status: ComponentStory<any> = () => (
+export const Horizontal: ComponentStory<any> = () => (
   <>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista
@@ -62,3 +62,47 @@ export const Status: ComponentStory<any> = () => (
     </p>
   </>
 );
+
+Horizontal.parameters = {
+  docs: {
+    description: {
+      story: 'Divider is horizontal by default. You can add text within Divider.',
+    },
+  },
+};
+
+export const TextWithoutHeadingStyle: ComponentStory<any> = () => (
+  <>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista
+      probare, quae sunt a te dicta? Refert tamen, quo modo.
+    </p>
+    <Divider plain>Text</Divider>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista
+      probare, quae sunt a te dicta? Refert tamen, quo modo.
+    </p>
+    <Divider orientation="left" plain>
+      Left Text
+    </Divider>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista
+      probare, quae sunt a te dicta? Refert tamen, quo modo.
+    </p>
+    <Divider orientation="right" plain>
+      Right Text
+    </Divider>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista
+      probare, quae sunt a te dicta? Refert tamen, quo modo.
+    </p>
+  </>
+);
+
+TextWithoutHeadingStyle.parameters = {
+  docs: {
+    description: {
+      story: 'You can use non-heading style of divider text by setting plain.',
+    },
+  },
+};
