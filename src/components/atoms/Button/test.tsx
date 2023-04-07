@@ -5,7 +5,7 @@ import Icon from '@antscorp/icons';
 // Components
 import {
   Button, Divider, Radio, Space, Modal,
-} from '../index';
+} from '../../index';
 
 const TestIcon = () => <Icon type="icon-ants-toggle-on" />;
 

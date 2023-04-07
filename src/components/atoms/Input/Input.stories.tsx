@@ -7,7 +7,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Input } from './Input';
 import {
   Space,
-} from '../index';
+} from 'src/components/atoms/Space';
 
 // Types
 import Icon from '@antscorp/icons';
@@ -16,7 +16,7 @@ import Icon from '@antscorp/icons';
 const exampleIcon = <Icon type="icon-ants-search-2" />;
 
 export default {
-  title: 'Components/Input',
+  title: 'Atoms/Input',
   component: Input,
   argTypes: {
     addonAfter: {

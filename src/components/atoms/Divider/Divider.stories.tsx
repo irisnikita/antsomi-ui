@@ -5,12 +5,9 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 // Components
 import { Divider } from './Divider';
-import {
-  Space,
-} from '../index';
 
 export default {
-  title: 'Components/Divider',
+  title: 'Atoms/Divider',
   component: Divider,
   argTypes: {
     children: {

@@ -1,15 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
-// Test Components
-import TestButton from './components/Button/test';
-
 import '@antscorp/icons/main.css';
-import { ConfigProvider } from './components';
 
-export const App = () => (
-  <TestButton />
-);
+import {
+  ConfigProvider, DatePickerAdvanced,
+} from './components';
+
+export const App = () => {
+  const [state, setState] = useState<{
+    date: string,
+    option: any,
+    format: string
+  }>({
+    option: {
+      dateType: 'today',
+      calculationDate: 'years',
+      calculationType: 'minus',
+      value: 1,
+    },
+    date: '',
+    format: 'YYYYMMDD',
+  });
+
+  return (
+    <DatePickerAdvanced
+      date={state.date}
+      option={state.option}
+      format={state.format}
+      callbackNewDate={(newDate) => {
+        setState((state) => ({ ...state, date: newDate }));
+      }}
+      onApply={({ option, date }) => setState((state) => ({
+        ...state,
+        option,
+        date,
+      }))}
+    />
+  );
+};
 
 ReactDOM.render(
   <React.StrictMode>

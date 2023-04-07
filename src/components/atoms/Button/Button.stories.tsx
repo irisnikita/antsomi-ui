@@ -8,14 +8,14 @@ import { MenuProps } from 'antd';
 import { Button } from './Button';
 import {
   Space, Radio, Divider, Tooltip, Dropdown,
-} from '../index';
+} from '../../index';
 
 // Types
 import { SizeType } from 'antd/es/config-provider/SizeContext';
 import Icon from '@antscorp/icons';
 
 export default {
-  title: 'Components/Button',
+  title: 'Atoms/Button',
   component: Button,
   argTypes: {
     block: {
