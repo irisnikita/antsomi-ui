@@ -225,6 +225,10 @@ export const GlobalStyle: React.FC<GlobalStyleProps> = () => (
     background-color: ${THEME.token?.blue};
   }
 
+  .antsomi-picker:not(.antsomi-picker-status-error) .antsomi-picker-suffix {
+    color: ${THEME.token?.bw10};
+  }
+
   // Custom
   .date-time-picker__popup-content {
     width: 230px !important;

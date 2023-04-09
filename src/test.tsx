@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import '@antscorp/icons/main.css';
 
 import {
-  ConfigProvider, DatePickerAdvanced,
+  ConfigProvider, DatePicker,
 } from './components';
 
 export const App = () => {
@@ -24,11 +24,11 @@ export const App = () => {
   });
 
   return (
-    <DatePickerAdvanced
+    <DatePicker.AdvancedPicker
       date={state.date}
       option={state.option}
       format={state.format}
-      callbackNewDate={(newDate) => {
+      onUpdatedNewDate={(newDate) => {
         setState((state) => ({ ...state, date: newDate }));
       }}
       onApply={({ option, date }) => setState((state) => ({

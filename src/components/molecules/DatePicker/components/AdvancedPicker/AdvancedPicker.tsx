@@ -7,6 +7,9 @@ import {
 import dayjs from 'dayjs';
 import clsx from 'clsx';
 
+// Icons
+import Icon from '@antscorp/icons';
+
 // Atoms
 import {
   Input, InputNumber, Divider, Space, Button, Typography,
@@ -16,9 +19,6 @@ import {
 import { Select } from 'src/components/molecules/Select';
 import { Dropdown } from 'src/components/molecules/Dropdown';
 import { DatePicker } from 'src/components/molecules/DatePicker';
-
-// Icons
-import Icon from '@antscorp/icons';
 
 // Utils
 import { handleError } from 'src/utils/handleError';
@@ -42,7 +42,7 @@ import {
   DATE_TYPES,
   DEFAULT_DATE_FORMAT,
   VALUE_TYPES,
-  TIME_PICKER_TYPE, YEAR_PICKER_TYPE,
+  TIME_PICKER_TYPE, YEAR_PICKER_TYPE, ADVANCED_PICKER_TYPE,
 } from './constants';
 import { THEME } from 'src/constants';
 
@@ -51,9 +51,10 @@ import {
   TAdvancedType, TCalculationDate, TCalculationType, TOperatorKey, TOption,
 } from './types';
 import { RangePickerProps } from 'antd/es/date-picker';
+import { EventIcon } from 'src/components/icons';
 
-export interface AdvancedProps {
-  title?: string;
+export interface AdvancedPickerProps {
+  label?: string;
   dateTypeKeysShow?: string[];
   defaultDateTypeKey?: string;
   valueType?: string;
@@ -67,19 +68,19 @@ export interface AdvancedProps {
   disableAfterDate?: string;
   disableBeforeDate?: string;
   errorMessage?: string;
-  callbackNewDate?: (newDate: any) => void;
+  onUpdatedNewDate?: (newDate: any) => void;
   onApply?: ({ date, option }: { date: string, option: TOption }) => void;
 }
 
-const PATH = 'src/components/molecules/DateTimePicker/components/Advanced/index.tsx';
+const PATH = 'src/components/molecules/DatePicker/components/Advanced/DatePickerAdvanced.tsx';
 
 const { useToken } = theme;
 const { Text } = Typography;
 
-export const DatePickerAdvanced: React.FC<AdvancedProps> = (props) => {
+export const AdvancedPicker: React.FC<AdvancedPickerProps> = (props) => {
   // Props
   const {
-    title,
+    label,
     inputStyle,
     dateTypeKeysShow,
     defaultDateTypeKey,
@@ -93,7 +94,7 @@ export const DatePickerAdvanced: React.FC<AdvancedProps> = (props) => {
     errorMessage,
     disableAfterDate,
     disableBeforeDate,
-    callbackNewDate,
+    onUpdatedNewDate,
     onApply,
   } = props;
 
@@ -345,8 +346,8 @@ export const DatePickerAdvanced: React.FC<AdvancedProps> = (props) => {
           }
         }
 
-        if (typeof callbackNewDate === 'function' && propsDate !== newDate) {
-          callbackNewDate(newDate);
+        if (typeof onUpdatedNewDate === 'function' && propsDate !== newDate) {
+          onUpdatedNewDate(newDate);
         }
       }
     } catch (error) {
@@ -475,13 +476,17 @@ export const DatePickerAdvanced: React.FC<AdvancedProps> = (props) => {
     }
   };
 
-  const renderDropdownLabel = () => (
-    <div style={{ textAlign: 'center' }}>
-      {title && <div className="__title">{title}</div>}
+  const renderDropdownLabel = () => {
+    const title = Object.values(ADVANCED_PICKER_TYPE).find(({ value }) => value === type)?.label;
 
-      {renderLabel(date, 'en')}
-    </div>
-  );
+    return (
+      <div style={{ textAlign: 'center' }}>
+        {title && operatorKey === 'between' && <Text className="__title" style={{ color: '#666666' }}>{title}</Text>}
+
+        {renderLabel(date, 'en')}
+      </div>
+    );
+  };
 
   const renderDropdownFooter = () => (
     <>
@@ -568,73 +573,91 @@ export const DatePickerAdvanced: React.FC<AdvancedProps> = (props) => {
     </div>
   );
 
-  return option.dateType.value === 'fixed' ? (
-    <DatePicker
-      open={isOpen}
-      allowClear={false}
-      inputReadOnly
-      status={errorMessage ? 'error' : ''}
-      inputRender={() => (
-        <DatePickerCustomInput
-          readOnly
-          placeholder="Select Date"
-          value={dayjs(dateDisplay, format).format(formatDisplay)}
-          onClick={() => toggleOpenDropdown()}
+  return (
+    <Space direction="vertical" size={5}>
+      {!!label && typeof label === 'string' ? <Text style={{ color: '#666666' }}>{label}</Text> : label}
+
+      {option.dateType.value === 'fixed' ? (
+        <DatePicker
+          open={isOpen}
+          allowClear={false}
+          inputReadOnly
+          status={errorMessage ? 'error' : ''}
+          inputRender={() => (
+            <DatePickerCustomInput
+              readOnly
+              placeholder="Select Date"
+              value={dayjs(dateDisplay, format).format(formatDisplay)}
+              onClick={() => toggleOpenDropdown()}
+            />
+          )}
+          value={dayjs(date, format)}
+          style={{
+            width: 120,
+          }}
+          disabledDate={disableDate}
+          format={formatDisplay}
+          showToday={false}
+          popupClassName={clsx('antsomi-picker-dropdown__advanced', {
+            '--error': errorMessage,
+          })}
+          renderExtraFooter={() => (
+            <>
+              <DatePickerHeader>
+                {renderDropdownLabel()}
+
+                {renderDateTypeOptions()}
+              </DatePickerHeader>
+
+              <DatePickerFooter>
+                <div style={{ padding: '0 10px' }}>
+                  {renderErrorMessage()}
+                </div>
+
+                {renderDropdownFooter()}
+              </DatePickerFooter>
+
+              <Divider />
+            </>
+          )}
+          suffixIcon={(
+            <EventIcon
+              width={20}
+              height={20}
+              fill={errorMessage ? THEME.token?.colorError : THEME.token?.bw10}
+            />
+          )}
+          onChange={onChangeDatePicker}
         />
+      ) : (
+        <Dropdown
+          open={isOpen}
+          dropdownRender={dropdownRender}
+          trigger={['click']}
+          onOpenChange={() => toggleOpenDropdown()}
+        >
+          <Input
+            onClick={() => toggleOpenDropdown()}
+            readOnly
+            suffix={(
+              <EventIcon
+                width={20}
+                height={20}
+              />
+            )}
+            style={inputStyle}
+            value={dayjs(dateDisplay, format).format(formatDisplay)}
+            status={errorMessage ? 'error' : ''}
+          />
+        </Dropdown>
       )}
-      value={dayjs(date, format)}
-      style={{
-        width: 120,
-      }}
-      disabledDate={disableDate}
-      format={formatDisplay}
-      showToday={false}
-      popupClassName={clsx('antsomi-picker-dropdown__advanced', {
-        '--error': errorMessage,
-      })}
-      renderExtraFooter={() => (
-        <>
-          <DatePickerHeader>
-            {renderDropdownLabel()}
-
-            {renderDateTypeOptions()}
-          </DatePickerHeader>
-
-          <DatePickerFooter>
-            <div style={{ padding: '0 10px' }}>
-              {renderErrorMessage()}
-            </div>
-
-            {renderDropdownFooter()}
-          </DatePickerFooter>
-
-          <Divider />
-        </>
-      )}
-      suffixIcon={<Icon type="icon-ants-calendar-v2" style={{ color: errorMessage ? THEME.token?.colorError : THEME.token?.bw10 }} />}
-      onChange={onChangeDatePicker}
-    />
-  ) : (
-    <Dropdown
-      open={isOpen}
-      dropdownRender={dropdownRender}
-      trigger={['click']}
-    >
-      <Input
-        onClick={() => toggleOpenDropdown()}
-        readOnly
-        suffix={<Icon type="icon-ants-calendar-v2" />}
-        style={inputStyle}
-        value={dayjs(dateDisplay, format).format(formatDisplay)}
-        status={errorMessage ? 'error' : ''}
-      />
-    </Dropdown>
+    </Space>
   );
 };
 
-DatePickerAdvanced.defaultProps = {
-  title: '',
-  type: 'startDate',
+AdvancedPicker.defaultProps = {
+  label: '',
+  type: ADVANCED_PICKER_TYPE.START_DATE.value,
   operatorKey: 'after',
   dateTypeKeysShow: [],
   date: dayjs().format(DEFAULT_DATE_FORMAT),

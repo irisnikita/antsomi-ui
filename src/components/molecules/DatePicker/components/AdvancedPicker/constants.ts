@@ -1,3 +1,6 @@
+// Types
+import { TAdvancedType } from './types';
+
 export const DATE_TYPES = [
   { value: 'today', label: 'Today' },
   { value: 'first_day_of_week_mon_sun', label: 'First day of this week (Mon - Sun)' },
@@ -67,4 +70,15 @@ export const YEAR_PICKER_TYPE = {
   YEAR: 'year',
   MONTH: 'month',
   QUARTER: 'quarter',
+};
+
+export const ADVANCED_PICKER_TYPE: Record<string, { value: TAdvancedType, label: string }> = {
+  START_DATE: {
+    value: 'startDate',
+    label: 'Start Date',
+  },
+  END_DATE: {
+    value: 'endDate',
+    label: 'End Date',
+  },
 };

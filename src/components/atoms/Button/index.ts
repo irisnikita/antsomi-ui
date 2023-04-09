@@ -1,1 +1,3 @@
-export { Button } from './Button';
+import { Button as AntdButton } from './Button';
+
+export const Button = AntdButton;
