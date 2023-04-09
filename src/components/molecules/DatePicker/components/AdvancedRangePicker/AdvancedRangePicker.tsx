@@ -77,6 +77,7 @@ export const AdvancedRangePicker: React.FC<AdvancedRangePickerProps> = (props) =
         type="startDate"
         format={ADVANCED_RANGE_PICKER_FORMAT.startDate}
         errorMessage={errorMessage}
+        disableAfterDate={timeRange.endDate.date}
         onUpdatedNewDate={(date) => onUpdateTimeRange('startDate', { date }, 'system')}
         onApply={({ date, option }) => onUpdateTimeRange('startDate', { date, ...option }, 'user')}
       />
