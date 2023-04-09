@@ -70,6 +70,7 @@ THEME.components = {
     controlHeight: 32,
     colorBgContainerDisabled: THEME.token?.bw2,
     colorTextDisabled: THEME.token?.bw10,
+    colorBorder: THEME.token?.blue1,
     borderRadius: 0,
     borderRadiusLG: 0,
     borderRadiusSM: 0,
