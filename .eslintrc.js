@@ -8,6 +8,7 @@ module.exports = {
   parserOptions: {
     project: './tsconfig.json',
   },
+  ignorePatterns: ['!src/**'],
   rules: {
     'no-console': 'error',
   },
