@@ -1,33 +1,29 @@
 // Libraries
-import React from "react";
-import { ConfigProvider } from "../src";
+import React from 'react';
+import { ConfigProvider } from '../src';
 
 // Css
-import "@antscorp/icons/main.css";
-import "./main.scss";
+import '@antscorp/icons/main.css';
+import './main.scss';
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {
       color: /(background|color)$/i,
       date: /Date$/,
     },
   },
-  viewMode: "docs",
+  viewMode: 'docs',
   options: {
     storySort: {
-      order: [
-        "Home",
-        ["Overview", "Installation", "Usage", "Change Log"],
-        "Components",
-      ],
+      order: ['Home', ['Overview', 'Installation', 'Usage', 'Change Log'], 'Components'],
     },
   },
 };
 
 export const decorators = [
-  (Story) => (
+  Story => (
     <ConfigProvider>
       <Story />
     </ConfigProvider>

@@ -10,7 +10,7 @@ interface InputNumberProps extends AntdInputNumberProps {
   showHandler?: boolean;
 }
 
-export const InputNumber: React.FC<InputNumberProps> = (props) => {
+export const InputNumber: React.FC<InputNumberProps> = props => {
   // Props
   const { showHandler, className, ...restOfProps } = props;
 

@@ -6,9 +6,7 @@ import { MenuProps } from 'antd';
 
 // Components
 import { Button } from './Button';
-import {
-  Space, Radio, Divider, Tooltip, Dropdown,
-} from '../../index';
+import { Space, Radio, Divider, Tooltip, Dropdown } from '../../index';
 
 // Types
 import { SizeType } from 'antd/es/config-provider/SizeContext';
@@ -89,7 +87,9 @@ export default {
       control: {
         type: 'select',
         labels: {
-          button: 'Button', reset: 'Reset', submit: 'Submit',
+          button: 'Button',
+          reset: 'Reset',
+          submit: 'Submit',
         },
       },
       options: ['button', 'reset', 'submit'],
@@ -129,7 +129,9 @@ export default {
       control: {
         type: 'select',
         labels: {
-          default: 'Default', circle: 'Circle', round: 'Round',
+          default: 'Default',
+          circle: 'Circle',
+          round: 'Round',
         },
       },
       options: ['default', 'circle', 'round'],
@@ -145,7 +147,9 @@ export default {
       control: {
         type: 'select',
         labels: {
-          large: 'Large', middle: 'Middle', small: 'Small',
+          large: 'Large',
+          middle: 'Middle',
+          small: 'Small',
         },
       },
       options: ['large', 'middle', 'small'],
@@ -173,7 +177,12 @@ export default {
       control: {
         type: 'select',
         labels: {
-          primary: 'Primary', ghost: 'Ghost', dashed: 'Dashed', link: 'Link', text: 'Text', default: 'Default',
+          primary: 'Primary',
+          ghost: 'Ghost',
+          dashed: 'Dashed',
+          link: 'Link',
+          text: 'Text',
+          default: 'Default',
         },
       },
       options: ['primary', 'ghost', 'dashed', 'link', 'text', 'default'],
@@ -218,7 +227,7 @@ const items = [
 ];
 
 // Default
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+const Template: ComponentStory<typeof Button> = args => <Button {...args} />;
 
 export const Default = Template.bind({});
 
@@ -240,7 +249,8 @@ export const Type: ComponentStory<any> = () => (
 Type.parameters = {
   docs: {
     description: {
-      story: 'There are `primary` button, `default` button, `dashed` button, `text` button and `link` button in Antsomi UI.',
+      story:
+        'There are `primary` button, `default` button, `dashed` button, `text` button and `link` button in Antsomi UI.',
     },
   },
 };
@@ -250,7 +260,7 @@ export const Size: ComponentStory<any> = () => {
 
   return (
     <>
-      <Radio.Group value={size} onChange={(e) => setSize(e.target.value)}>
+      <Radio.Group value={size} onChange={e => setSize(e.target.value)}>
         <Radio.Button value="large">Large</Radio.Button>
         <Radio.Button value="default">Default</Radio.Button>
         <Radio.Button value="small">Small</Radio.Button>
@@ -290,7 +300,8 @@ export const Size: ComponentStory<any> = () => {
 Size.parameters = {
   docs: {
     description: {
-      story: 'Antsomi UI supports a default button size as well as a large and small size. If a large or small button is desired, set the size property to either `large` or `small` respectively. Omit the `size` property for a button with the default size.',
+      story:
+        'Antsomi UI supports a default button size as well as a large and small size. If a large or small button is desired, set the size property to either `large` or `small` respectively. Omit the `size` property for a button with the default size.',
     },
   },
 };
@@ -299,14 +310,14 @@ export const Loading: ComponentStory<any> = () => {
   const [loadings, setLoadings] = useState<boolean[]>([]);
 
   const enterLoading = (index: number) => {
-    setLoadings((prevLoadings) => {
+    setLoadings(prevLoadings => {
       const newLoadings = [...prevLoadings];
       newLoadings[index] = true;
       return newLoadings;
     });
 
     setTimeout(() => {
-      setLoadings((prevLoadings) => {
+      setLoadings(prevLoadings => {
         const newLoadings = [...prevLoadings];
         newLoadings[index] = false;
         return newLoadings;
@@ -352,7 +363,8 @@ export const Loading: ComponentStory<any> = () => {
 Loading.parameters = {
   docs: {
     description: {
-      story: 'A loading indicator can be added to a button by setting the `loading` property on the `Button`.',
+      story:
+        'A loading indicator can be added to a button by setting the `loading` property on the `Button`.',
     },
   },
 };
@@ -375,7 +387,8 @@ export const GhostButton: ComponentStory<any> = () => (
 GhostButton.parameters = {
   docs: {
     description: {
-      story: "ghost property will make button's background transparent, it is commonly used in colored background.",
+      story:
+        "ghost property will make button's background transparent, it is commonly used in colored background.",
     },
   },
 };
@@ -440,13 +453,13 @@ export const IconButton: ComponentStory<any> = () => (
       <Button icon={exampleIcon} href="https://www.google.com" />
     </Space>
   </Space>
-
 );
 
 IconButton.parameters = {
   docs: {
     description: {
-      story: '`Button` components can contain an `Icon`. This is done by setting the `icon` property or placing an `Icon` component within the `Button`. If you want specific control over the positioning and placement of the `Icon`, then that should be done by placing the `Icon` component within the `Button` rather than using the `icon` property.',
+      story:
+        '`Button` components can contain an `Icon`. This is done by setting the `icon` property or placing an `Icon` component within the `Button`. If you want specific control over the positioning and placement of the `Icon`, then that should be done by placing the `Icon` component within the `Button` rather than using the `icon` property.',
     },
   },
 };
@@ -529,7 +542,7 @@ Disabled.parameters = {
 };
 
 export const MultipleButtons: ComponentStory<any> = () => {
-  const onMenuClick: MenuProps['onClick'] = (e) => {
+  const onMenuClick: MenuProps['onClick'] = e => {
     console.log('click', e);
   };
 

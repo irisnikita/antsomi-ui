@@ -12,14 +12,10 @@ import Icon from '@antscorp/icons';
 import { THEME } from 'src/constants';
 import { StyledTag, TagCloseBtn } from './styled';
 
-export interface SelectProps extends AntdSelectProps {
-
-}
+export interface SelectProps extends AntdSelectProps {}
 
 const tagRender = (props: CustomTagProps) => {
-  const {
-    label, closable, onClose,
-  } = props;
+  const { label, closable, onClose } = props;
   const onPreventMouseDown = (event: React.MouseEvent<HTMLSpanElement>) => {
     event.preventDefault();
     event.stopPropagation();
@@ -29,7 +25,7 @@ const tagRender = (props: CustomTagProps) => {
       onMouseDown={onPreventMouseDown}
       closable={closable}
       onClose={onClose}
-      closeIcon={(
+      closeIcon={
         <TagCloseBtn>
           <Icon
             type="icon-ants-remove"
@@ -39,21 +35,23 @@ const tagRender = (props: CustomTagProps) => {
             }}
           />
         </TagCloseBtn>
-      )}
+      }
     >
       {label}
     </StyledTag>
   );
 };
 
-const CustomSelect: React.FC<SelectProps> = (props) => <AntdSelect {...props} />;
+const CustomSelect: React.FC<SelectProps> = props => <AntdSelect {...props} />;
 
 const Select = CustomSelect as typeof AntdSelect & React.FC<SelectProps>;
 
 Select.OptGroup = AntdSelect.OptGroup;
 Select.Option = AntdSelect.Option;
 Select.defaultProps = {
-  suffixIcon: <Icon type="icon-ants-expand-more" style={{ fontSize: 16, color: THEME.token?.bw10 }} />,
+  suffixIcon: (
+    <Icon type="icon-ants-expand-more" style={{ fontSize: 16, color: THEME.token?.bw10 }} />
+  ),
   tagRender,
 };
 

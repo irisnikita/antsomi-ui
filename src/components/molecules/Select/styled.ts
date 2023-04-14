@@ -38,7 +38,7 @@ export const TagCloseBtn = styled.div<{ borderColor?: string }>`
   width: 16px;
   height: 16px;
   border-radius: 100%;
-  border: 2.5px solid ${(p) => (p.borderColor ? p.borderColor : '#cae5fe')};
+  border: 2.5px solid ${p => (p.borderColor ? p.borderColor : '#cae5fe')};
   background-color: #fff;
   color: ${THEME.token?.colorPrimary};
 `;

@@ -7,4 +7,8 @@ export { CustomComponent } from './CustomComponent';
 export { DatePicker } from './DatePicker';
 
 // Types
-export type { AdvancedPickerProps, TAdvancedPickerOption, TAdvancedRangePickerTimeRange } from './DatePicker';
+export type {
+  AdvancedPickerProps,
+  TAdvancedPickerOption,
+  TAdvancedRangePickerTimeRange,
+} from './DatePicker';

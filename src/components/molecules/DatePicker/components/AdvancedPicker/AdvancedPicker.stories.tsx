@@ -9,8 +9,7 @@ import { AdvancedPicker } from './AdvancedPicker';
 export default {
   title: 'Molecules/DatePicker/AdvancedPicker',
   component: AdvancedPicker,
-  argTypes: {
-  },
+  argTypes: {},
   parameters: {
     docs: {
       description: {
@@ -21,9 +20,8 @@ export default {
 } as ComponentMeta<typeof AdvancedPicker>;
 
 // Default
-const Template: ComponentStory<typeof AdvancedPicker> = (args) => <AdvancedPicker {...args} />;
+const Template: ComponentStory<typeof AdvancedPicker> = args => <AdvancedPicker {...args} />;
 
 export const Default = Template.bind({});
 
-Default.args = {
-};
+Default.args = {};

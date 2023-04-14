@@ -23,8 +23,14 @@ dayjs.extend(quarterOfYear);
  * @param {number} [value=0] - Value to be added or subtracted.
  * @param {string} [dateFormat=DEFAULT_DATE_FORMAT] - Format in which to return the new date.
  * @returns {string} The new date in the specified format.
-*/
-export const calculationDateAdvanced = (dateTypeKey = 'today', calculationTypeKey = 'minus', calculationDateKey: any = 'days', value = 0, dateFormat = DEFAULT_DATE_FORMAT) => {
+ */
+export const calculationDateAdvanced = (
+  dateTypeKey = 'today',
+  calculationTypeKey = 'minus',
+  calculationDateKey: any = 'days',
+  value = 0,
+  dateFormat = DEFAULT_DATE_FORMAT,
+) => {
   let date = dayjs();
 
   switch (dateTypeKey) {
@@ -68,7 +74,10 @@ export const calculationDateAdvanced = (dateTypeKey = 'today', calculationTypeKe
 
   let newDate: any = '';
 
-  newDate = calculationTypeKey === 'plus' ? dayjs(date).add(value, calculationDateKey) : dayjs(date).subtract(value, calculationDateKey);
+  newDate =
+    calculationTypeKey === 'plus'
+      ? dayjs(date).add(value, calculationDateKey)
+      : dayjs(date).subtract(value, calculationDateKey);
 
   switch (dateTypeKey) {
     case 'last_day_of_month':

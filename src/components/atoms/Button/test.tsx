@@ -3,9 +3,7 @@ import React, { useState } from 'react';
 import Icon from '@antscorp/icons';
 
 // Components
-import {
-  Button, Divider, Radio, Space, Modal,
-} from '../../index';
+import { Button, Divider, Radio, Space, Modal } from '../../index';
 
 const TestIcon = () => <Icon type="icon-ants-toggle-on" />;
 
@@ -63,7 +61,7 @@ const TestButton: React.FC = () => {
           <Button type="text">Text Button</Button>
           <Button type="link">Link Button</Button>
         </Space>
-        <Radio.Group value={size} onChange={(e) => setSize(e.target.value)}>
+        <Radio.Group value={size} onChange={e => setSize(e.target.value)}>
           <Radio.Button value="large">Large</Radio.Button>
           <Radio.Button value="default">Default</Radio.Button>
           <Radio.Button value="small">Small</Radio.Button>
@@ -95,9 +93,15 @@ const TestButton: React.FC = () => {
               Download
             </Button>
             <Button danger>Danger</Button>
-            <Button danger type="primary">Danger</Button>
-            <Button danger type="link">Danger</Button>
-            <Button danger type="text">Danger</Button>
+            <Button danger type="primary">
+              Danger
+            </Button>
+            <Button danger type="link">
+              Danger
+            </Button>
+            <Button danger type="text">
+              Danger
+            </Button>
           </Space>
         </Space>
 
@@ -145,7 +149,9 @@ const TestButton: React.FC = () => {
             </Button>
           </Space>
           <Space>
-            <Button type="primary" danger>Primary</Button>
+            <Button type="primary" danger>
+              Primary
+            </Button>
             <Button type="primary" danger disabled>
               Primary(disabled)
             </Button>

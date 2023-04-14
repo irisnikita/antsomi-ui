@@ -5,9 +5,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 // Components
 import { Input } from './Input';
-import {
-  Space,
-} from 'src/components/atoms/Space';
+import { Space } from 'src/components/atoms/Space';
 
 // Types
 import Icon from '@antscorp/icons';
@@ -108,7 +106,10 @@ export default {
       defaultValue: false,
       description: 'Whether show text count',
       table: {
-        type: { summary: 'boolean | { formatter: (info: { value: string, count: number, maxLength?: number }) => ReactNode }' },
+        type: {
+          summary:
+            'boolean | { formatter: (info: { value: string, count: number, maxLength?: number }) => ReactNode }',
+        },
         defaultValue: { summary: 'false' },
       },
       control: {
@@ -147,7 +148,8 @@ export default {
     size: {
       name: 'size',
       defaultValue: undefined,
-      description: 'The size of the input box. Note: in the context of a form, the `middle` size is used',
+      description:
+        'The size of the input box. Note: in the context of a form, the `middle` size is used',
       table: {
         type: { summary: 'large | middle | small' },
         defaultValue: { summary: '-' },
@@ -223,17 +225,13 @@ export default {
 // Variables
 
 // Default
-const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
+const Template: ComponentStory<typeof Input> = args => <Input {...args} />;
 
 export const Default = Template.bind({});
 
-Default.args = {
+Default.args = {};
 
-};
-
-export const BasicUsage: ComponentStory<any> = () => (
-  <Input placeholder="Basic usage" />
-);
+export const BasicUsage: ComponentStory<any> = () => <Input placeholder="Basic usage" />;
 
 BasicUsage.parameters = {
   docs: {
@@ -277,7 +275,9 @@ Status.parameters = {
   },
 };
 
-export const BorderLess: ComponentStory<any> = () => <Input placeholder="Borderless" bordered={false} />;
+export const BorderLess: ComponentStory<any> = () => (
+  <Input placeholder="Borderless" bordered={false} />
+);
 
 BorderLess.parameters = {
   docs: {

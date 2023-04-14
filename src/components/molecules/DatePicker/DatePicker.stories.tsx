@@ -9,8 +9,7 @@ import { DatePicker } from './DatePicker';
 export default {
   title: 'Molecules/DatePicker/DatePicker',
   component: DatePicker,
-  argTypes: {
-  },
+  argTypes: {},
   parameters: {
     docs: {
       description: {
@@ -21,9 +20,8 @@ export default {
 } as ComponentMeta<typeof DatePicker>;
 
 // Default
-const Template: ComponentStory<typeof DatePicker> = (args) => <DatePicker {...args} />;
+const Template: ComponentStory<typeof DatePicker> = args => <DatePicker {...args} />;
 
 export const Default = Template.bind({});
 
-Default.args = {
-};
+Default.args = {};

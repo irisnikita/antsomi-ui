@@ -6,9 +6,8 @@ import { AdvancedPicker } from './components/AdvancedPicker';
 import { AdvancedRangePicker } from './components/AdvancedRangePicker';
 
 export type TDatePicker = typeof AntdDatePicker & {
-  AdvancedPicker: typeof AdvancedPicker,
-  AdvancedRangePicker: typeof AdvancedRangePicker,
-
+  AdvancedPicker: typeof AdvancedPicker;
+  AdvancedRangePicker: typeof AdvancedRangePicker;
 };
 
 export const DatePicker = AntdDatePicker as TDatePicker;

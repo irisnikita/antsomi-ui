@@ -2,34 +2,34 @@
 import { TAdvancedType } from './types';
 
 export const DATE_TYPES = [
-  { value: 'today', label: 'Today' },
-  { value: 'first_day_of_week_mon_sun', label: 'First day of this week (Mon - Sun)' },
-  { value: 'first_day_of_week_sun_sat', label: 'First day of this week (Sun - Sat)' },
-  { value: 'first_day_of_month', label: 'First day of this month' },
-  { value: 'first_day_of_quarter', label: 'First day of this quarter' },
-  { value: 'first_day_of_year', label: 'First day of this year' },
-  { value: 'last_day_of_week_mon_sun', label: 'Last day of this week (Mon - Sun)' },
-  { value: 'last_day_of_week_sun_sat', label: 'Last day of this week (Sun - Sat)' },
-  { value: 'last_day_of_month', label: 'Last day of this month' },
-  { value: 'last_day_of_quarter', label: 'Last day of this quarter' },
-  { value: 'last_day_of_year', label: 'Last day of this year' },
-  { value: 'fixed', label: 'Fixed' },
+  { value: 'fixed', label: 'datePicker.dateTypes.fixed' },
+  { value: 'today', label: 'datePicker.dateTypes.today' },
+  { value: 'first_day_of_week_mon_sun', label: 'datePicker.dateTypes.firstDayOfWeekMonSun' },
+  { value: 'first_day_of_week_sun_sat', label: 'datePicker.dateTypes.firstDayOfWeekSunSat' },
+  { value: 'first_day_of_month', label: 'datePicker.dateTypes.firstDayOfMonth' },
+  { value: 'first_day_of_quarter', label: 'datePicker.dateTypes.firstDayOfQuarter' },
+  { value: 'first_day_of_year', label: 'datePicker.dateTypes.firstDayOfYear' },
+  { value: 'last_day_of_week_mon_sun', label: 'datePicker.dateTypes.lastDayOfWeekMonSun' },
+  { value: 'last_day_of_week_sun_sat', label: 'datePicker.dateTypes.lastDayOfWeekSunSat' },
+  { value: 'last_day_of_month', label: 'datePicker.dateTypes.lastDayOfMonth' },
+  { value: 'last_day_of_quarter', label: 'datePicker.dateTypes.lastDayOfQuarter' },
+  { value: 'last_day_of_year', label: 'datePicker.dateTypes.lastDayOfYear' },
 ];
 
 export const CALCULATION_TYPES = [
-  { value: 'minus', label: 'Minus' },
-  { value: 'plus', label: 'Plus' },
+  { value: 'minus', label: 'global.minus' },
+  { value: 'plus', label: 'global.plus' },
 ];
 
 export const CALCULATION_DATES = [
-  { value: 'seconds', label: 'Seconds' },
-  { value: 'minutes', label: 'Minutes' },
-  { value: 'hours', label: 'Hours' },
-  { value: 'days', label: 'Days' },
-  { value: 'weeks', label: 'Weeks' },
-  { value: 'months', label: 'Months' },
-  { value: 'quarters', label: 'Quarters' },
-  { value: 'years', label: 'Years' },
+  { value: 'seconds', label: 'datePicker.seconds' },
+  { value: 'minutes', label: 'datePicker.minutes' },
+  { value: 'hours', label: 'datePicker.hours' },
+  { value: 'days', label: 'datePicker.days' },
+  { value: 'weeks', label: 'datePicker.weeks' },
+  { value: 'months', label: 'datePicker.months' },
+  { value: 'quarters', label: 'datePicker.quarters' },
+  { value: 'years', label: 'datePicker.years' },
 ];
 
 export const VALUE_TYPES = {
@@ -72,13 +72,13 @@ export const YEAR_PICKER_TYPE = {
   QUARTER: 'quarter',
 };
 
-export const ADVANCED_PICKER_TYPE: Record<string, { value: TAdvancedType, label: string }> = {
+export const ADVANCED_PICKER_TYPE: Record<string, { value: TAdvancedType; label: string }> = {
   START_DATE: {
     value: 'startDate',
-    label: 'Start Date',
+    label: 'datePicker.startDate',
   },
   END_DATE: {
     value: 'endDate',
-    label: 'End Date',
+    label: 'datePicker.endDate',
   },
 };

@@ -7,11 +7,11 @@ const mapToken = defaultAlgorithm(defaultSeed);
 const { gold1, gold6 } = mapToken;
 
 type TTheme = {
-  token?: ThemeConfig['token'] & { [key: string]: any },
-  components?: ThemeConfig['components'],
-  algorithm?: ThemeConfig['algorithm'],
-  hashed?: ThemeConfig['hashed'],
-  inherit?: ThemeConfig['inherit']
+  token?: ThemeConfig['token'] & { [key: string]: any };
+  components?: ThemeConfig['components'];
+  algorithm?: ThemeConfig['algorithm'];
+  hashed?: ThemeConfig['hashed'];
+  inherit?: ThemeConfig['inherit'];
 };
 
 export const THEME: TTheme = {

@@ -5,9 +5,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 // Components
 import { Select, SelectProps } from './Select';
-import {
-  Space,
-} from 'src/components/atoms/Space';
+import { Space } from 'src/components/atoms/Space';
 
 export default {
   title: 'Molecules/Select',
@@ -34,7 +32,7 @@ for (let i = 10; i < 36; i++) {
 }
 
 // Default
-const Template: ComponentStory<typeof Select> = (args) => <Select {...args} />;
+const Template: ComponentStory<typeof Select> = args => <Select {...args} />;
 
 export const Default = Template.bind({});
 

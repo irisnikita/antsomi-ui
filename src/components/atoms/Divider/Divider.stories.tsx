@@ -35,7 +35,7 @@ export default {
 // Variables
 
 // Default
-const Template: ComponentStory<typeof Divider> = (args) => <Divider {...args} />;
+const Template: ComponentStory<typeof Divider> = args => <Divider {...args} />;
 
 export const Default = Template.bind({});
 

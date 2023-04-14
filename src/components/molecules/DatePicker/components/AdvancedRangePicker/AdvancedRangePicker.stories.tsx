@@ -12,8 +12,7 @@ import { TTimeRange } from './types';
 export default {
   title: 'Molecules/DatePicker/AdvancedRangePicker',
   component: AdvancedRangePicker,
-  argTypes: {
-  },
+  argTypes: {},
   parameters: {
     docs: {
       description: {
@@ -24,8 +23,9 @@ export default {
 } as ComponentMeta<typeof AdvancedRangePicker>;
 
 // Default
-export const Template:
-ComponentStory<typeof AdvancedRangePicker> = (args) => <AdvancedRangePicker {...args} />;
+export const Template: ComponentStory<typeof AdvancedRangePicker> = args => (
+  <AdvancedRangePicker {...args} />
+);
 
 export const Basic: ComponentStory<typeof AdvancedRangePicker> = () => {
   // State
@@ -61,7 +61,7 @@ export const Basic: ComponentStory<typeof AdvancedRangePicker> = () => {
   // Handlers
   const onChangeAdvancedRangePicker = ({ timeRange, mode: _mode }) => {
     try {
-      setTimeRange((previousTimeRange) => ({ ...previousTimeRange, ...timeRange }));
+      setTimeRange(previousTimeRange => ({ ...previousTimeRange, ...timeRange }));
     } catch (error) {
       // Handle Error
     }
@@ -76,8 +76,7 @@ export const Basic: ComponentStory<typeof AdvancedRangePicker> = () => {
   );
 };
 
-Basic.args = {
-};
+Basic.args = {};
 Basic.parameters = {
   docs: {
     description: {

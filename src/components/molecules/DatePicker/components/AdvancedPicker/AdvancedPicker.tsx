@@ -1,19 +1,16 @@
 /* eslint-disable react/no-unused-prop-types */
 // Libraries
 import React, { useEffect, useMemo, useState } from 'react';
-import {
-  theme,
-} from 'antd';
+import { theme } from 'antd';
 import dayjs from 'dayjs';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 // Icons
 import Icon from '@antscorp/icons';
 
 // Atoms
-import {
-  Input, InputNumber, Divider, Space, Button, Typography,
-} from 'src/components/atoms';
+import { Input, InputNumber, Divider, Space, Button, Typography } from 'src/components/atoms';
 
 // Molecules
 import { Select } from 'src/components/molecules/Select';
@@ -42,16 +39,17 @@ import {
   DATE_TYPES,
   DEFAULT_DATE_FORMAT,
   VALUE_TYPES,
-  TIME_PICKER_TYPE, YEAR_PICKER_TYPE, ADVANCED_PICKER_TYPE,
+  TIME_PICKER_TYPE,
+  YEAR_PICKER_TYPE,
+  ADVANCED_PICKER_TYPE,
 } from './constants';
 import { THEME } from 'src/constants';
 
 // Types
-import {
-  TAdvancedType, TCalculationDate, TCalculationType, TOperatorKey, TOption,
-} from './types';
+import { TAdvancedType, TCalculationDate, TCalculationType, TOperatorKey, TOption } from './types';
 import { RangePickerProps } from 'antd/es/date-picker';
 import { EventIcon } from 'src/components/icons';
+import { translations } from 'src/locales/translations';
 
 export interface AdvancedPickerProps {
   label?: string;
@@ -69,7 +67,7 @@ export interface AdvancedPickerProps {
   disableBeforeDate?: string;
   errorMessage?: string;
   onUpdatedNewDate?: (newDate: any) => void;
-  onApply?: ({ date, option }: { date: string, option: TOption }) => void;
+  onApply?: ({ date, option }: { date: string; option: TOption }) => void;
 }
 
 const PATH = 'src/components/molecules/DatePicker/components/Advanced/DatePickerAdvanced.tsx';
@@ -77,7 +75,7 @@ const PATH = 'src/components/molecules/DatePicker/components/Advanced/DatePicker
 const { useToken } = theme;
 const { Text } = Typography;
 
-export const AdvancedPicker: React.FC<AdvancedPickerProps> = (props) => {
+export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
   // Props
   const {
     label,
@@ -101,14 +99,15 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = (props) => {
   // Memo
   const newDateTypes = useMemo(() => {
     if (dateTypeKeysShow && dateTypeKeysShow.length) {
-      const draftDateTypes = DATE_TYPES
-        .filter((dateType) => dateTypeKeysShow.some((key) => key === dateType.value));
+      const draftDateTypes = DATE_TYPES.filter(dateType =>
+        dateTypeKeysShow.some(key => key === dateType.value),
+      );
 
       return draftDateTypes;
     }
 
     if (defaultDateTypeKey) {
-      const index = DATE_TYPES.findIndex((dateType) => dateType.value === defaultDateTypeKey);
+      const index = DATE_TYPES.findIndex(dateType => dateType.value === defaultDateTypeKey);
 
       if (index !== -1) {
         return reorder(DATE_TYPES, index, 0);
@@ -122,24 +121,28 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = (props) => {
     switch (valueType) {
       case VALUE_TYPES.YEAR_MONTH_DAY:
         return CALCULATION_DATES.filter(
-          (calculationDate) => !['hours', 'minutes', 'seconds'].includes(calculationDate.value),
+          calculationDate => !['hours', 'minutes', 'seconds'].includes(calculationDate.value),
         );
 
       case VALUE_TYPES.YEAR_MONTH_DAY_HOUR:
         return CALCULATION_DATES.filter(
-          (calculationDate) => !['minutes', 'seconds'].includes(calculationDate.value),
+          calculationDate => !['minutes', 'seconds'].includes(calculationDate.value),
         );
 
       case VALUE_TYPES.YEAR_MONTH_DAY_MINUTE:
         return CALCULATION_DATES.filter(
-          (calculationDate) => !['seconds'].includes(calculationDate.value),
+          calculationDate => !['seconds'].includes(calculationDate.value),
         );
 
       case VALUE_TYPES.YEAR:
-        return CALCULATION_DATES.filter((calculationDate) => ['years'].includes(calculationDate.value));
+        return CALCULATION_DATES.filter(calculationDate =>
+          ['years'].includes(calculationDate.value),
+        );
 
       case VALUE_TYPES.YEAR_MONTH:
-        return CALCULATION_DATES.filter((calculationDate) => ['years', 'months', 'quarters'].includes(calculationDate.value));
+        return CALCULATION_DATES.filter(calculationDate =>
+          ['years', 'months', 'quarters'].includes(calculationDate.value),
+        );
 
       case VALUE_TYPES.YEAR_MONTH_DAY_SECOND:
         return CALCULATION_DATES;
@@ -240,12 +243,11 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = (props) => {
     date: dayjs().format(DEFAULT_DATE_FORMAT),
     dateDisplay: dayjs().format(DEFAULT_DATE_FORMAT),
   });
-  const {
-    isOpen, option, date, dateDisplay,
-  } = state;
+  const { isOpen, option, date, dateDisplay } = state;
 
   // Hooks
   const { token } = useToken();
+  const { t } = useTranslation();
 
   // Variables
   const contentStyle = {
@@ -258,7 +260,7 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = (props) => {
   useEffect(() => {
     try {
       if (isOpen) {
-        setState((state) => ({ ...state, option: state.optionSelected, date: state.dateDisplay }));
+        setState(state => ({ ...state, option: state.optionSelected, date: state.dateDisplay }));
       }
     } catch (error) {
       handleError(error, {
@@ -280,7 +282,7 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = (props) => {
           format,
         );
 
-        setState((state) => ({ ...state, date: newDate }));
+        setState(state => ({ ...state, date: newDate }));
       }
     } catch (error) {
       handleError(error, {
@@ -294,17 +296,15 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = (props) => {
   useEffect(() => {
     try {
       if (propsOption) {
-        const {
-          dateType, calculationType, calculationDate, value = 0,
-        } = propsOption || {};
+        const { dateType, calculationType, calculationDate, value = 0 } = propsOption || {};
         const newDateTypes = DATE_TYPES;
 
-        const newDateType = newDateTypes.find((dType) => dType.value === dateType);
+        const newDateType = newDateTypes.find(dType => dType.value === dateType);
         const newCalculationType = CALCULATION_TYPES.find(
-          (calType) => calType.value === calculationType,
+          calType => calType.value === calculationType,
         );
         const newCalculationDate = newCalculationDates.find(
-          (calDate) => calDate.value === calculationDate,
+          calDate => calDate.value === calculationDate,
         );
         let newDate: any = '';
 
@@ -314,7 +314,7 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = (props) => {
               ? dayjs(propsDate, DEFAULT_DATE_FORMAT).format(format)
               : propsDate;
 
-            setState((state) => ({
+            setState(state => ({
               ...state,
               date: newDate,
               dateDisplay: newDate,
@@ -330,7 +330,7 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = (props) => {
                 format,
               );
 
-              setState((state) => ({
+              setState(state => ({
                 ...state,
                 dateDisplay: date,
                 optionSelected: {
@@ -360,7 +360,8 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = (props) => {
   }, [propsOption, propsDate, format]);
 
   // Handlers
-  const disableDate: RangePickerProps['disabledDate'] = (current) => current > dayjs(disableAfterDate, format) || current < dayjs(disableBeforeDate, format);
+  const disableDate: RangePickerProps['disabledDate'] = current =>
+    current > dayjs(disableAfterDate, format) || current < dayjs(disableBeforeDate, format);
 
   const renderLabel = (date: string, locale: string = 'en') => {
     let formatLabel = 'dddd, MMMM D, YYYY';
@@ -408,7 +409,7 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = (props) => {
 
   const onChangeOption = (params: Record<string, any>) => {
     try {
-      setState((state) => ({
+      setState(state => ({
         ...state,
         option: {
           ...state.option,
@@ -426,7 +427,7 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = (props) => {
 
   const onChangeDatePicker = (value: any) => {
     try {
-      setState((state) => ({ ...state, date: dayjs(value).format(format) }));
+      setState(state => ({ ...state, date: dayjs(value).format(format) }));
     } catch (error) {
       handleError(error, {
         path: PATH,
@@ -440,13 +441,22 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = (props) => {
     try {
       const draftOption: TOption = {
         dateType: option.dateType.value,
-        calculationDate: option.dateType.value === 'fixed' ? '' : option.calculationDate.value as TCalculationDate,
-        calculationType: option.dateType.value === 'fixed' ? '' : option.calculationType.value as TCalculationType,
+        calculationDate:
+          option.dateType.value === 'fixed'
+            ? ''
+            : (option.calculationDate.value as TCalculationDate),
+        calculationType:
+          option.dateType.value === 'fixed'
+            ? ''
+            : (option.calculationType.value as TCalculationType),
         value: option.dateType.value === 'fixed' ? 0 : option.value,
       };
 
-      setState((state) => ({
-        ...state, optionSelected: option, dateDisplay: date, isOpen: false,
+      setState(state => ({
+        ...state,
+        optionSelected: option,
+        dateDisplay: date,
+        isOpen: false,
       }));
 
       if (typeof onApply === 'function') {
@@ -466,7 +476,7 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = (props) => {
 
   const onClickNow = () => {
     try {
-      setState((state) => ({ ...state, date: dayjs().format(format) }));
+      setState(state => ({ ...state, date: dayjs().format(format) }));
     } catch (error) {
       handleError(error, {
         path: PATH,
@@ -481,7 +491,11 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = (props) => {
 
     return (
       <div style={{ textAlign: 'center' }}>
-        {title && operatorKey === 'between' && <Text className="__title" style={{ color: '#666666' }}>{title}</Text>}
+        {title && operatorKey === 'between' && (
+          <Text className="__title" style={{ color: '#666666' }}>
+            {t(title)}
+          </Text>
+        )}
 
         {renderLabel(date, 'en')}
       </div>
@@ -494,53 +508,52 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = (props) => {
 
       <DropdownFooter>
         <Space>
-          <Button type="primary" onClick={() => onClickApply()}>Apply</Button>
+          <Button type="primary" onClick={() => onClickApply()}>
+            Apply
+          </Button>
           <Button type="default" onClick={() => toggleOpenDropdown(false)}>
             Cancel
           </Button>
         </Space>
 
-        {option.dateType.value === 'fixed' && (
-        <Button onClick={() => onClickNow()}>Now</Button>
-        )}
+        {option.dateType.value === 'fixed' && <Button onClick={() => onClickNow()}>Now</Button>}
       </DropdownFooter>
     </>
   );
 
   const renderDateTypeOptions = () => (
     <Select
-      options={newDateTypes}
+      options={newDateTypes.map(dateType => ({ ...dateType, label: t(dateType.label) }))}
       value={option.dateType.value}
-      onChange={(value) => {
-        const dateType = newDateTypes.find((dateType) => dateType.value === value);
+      onChange={value => {
+        const dateType = newDateTypes.find(dateType => dateType.value === value);
 
         onChangeOption({ dateType });
       }}
     />
   );
 
-  const renderErrorMessage = () => (errorMessage ? (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-      <Icon type="icon-ants-remove-circle" style={{ color: THEME.token?.colorError }} />
-      <Text type="danger">{errorMessage}</Text>
-    </div>
-  ) : null);
+  const renderErrorMessage = () =>
+    errorMessage ? (
+      <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+        <Icon type="icon-ants-remove-circle" style={{ color: THEME.token?.colorError }} />
+        <Text type="danger">{errorMessage}</Text>
+      </div>
+    ) : null;
 
   const dropdownRender = () => (
     <div style={contentStyle}>
-      <DropdownHeader>
-        {renderDropdownLabel()}
-      </DropdownHeader>
+      <DropdownHeader>{renderDropdownLabel()}</DropdownHeader>
 
       <DropdownContent>
         {renderDateTypeOptions()}
 
         <Select
-          options={CALCULATION_TYPES}
+          options={CALCULATION_TYPES.map(({ label, value }) => ({ value, label: t(label) }))}
           value={option.calculationType.value}
-          onChange={(value) => {
+          onChange={value => {
             const calculationType = CALCULATION_TYPES.find(
-              (calculationType) => calculationType.value === value,
+              calculationType => calculationType.value === value,
             );
 
             onChangeOption({ calculationType });
@@ -551,15 +564,18 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = (props) => {
           value={option.value}
           style={{ width: '100%' }}
           showHandler={false}
-          onChange={(value) => onChangeOption({ value })}
+          onChange={value => onChangeOption({ value })}
         />
 
         <Select
-          options={newCalculationDates}
+          options={newCalculationDates.map(calculationDate => ({
+            ...calculationDate,
+            label: t(calculationDate.label),
+          }))}
           value={option.calculationDate.value}
-          onChange={(value) => {
+          onChange={value => {
             const calculationDate = newCalculationDates.find(
-              (calculationDate) => calculationDate.value === value,
+              calculationDate => calculationDate.value === value,
             );
 
             onChangeOption({ calculationDate });
@@ -575,7 +591,11 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = (props) => {
 
   return (
     <Space direction="vertical" size={5}>
-      {!!label && typeof label === 'string' ? <Text style={{ color: '#666666' }}>{label}</Text> : label}
+      {!!label && typeof label === 'string' ? (
+        <Text style={{ color: '#666666' }}>{label}</Text>
+      ) : (
+        label
+      )}
 
       {option.dateType.value === 'fixed' ? (
         <DatePicker
@@ -610,9 +630,7 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = (props) => {
               </DatePickerHeader>
 
               <DatePickerFooter>
-                <div style={{ padding: '0 10px' }}>
-                  {renderErrorMessage()}
-                </div>
+                <div style={{ padding: '0 10px' }}>{renderErrorMessage()}</div>
 
                 {renderDropdownFooter()}
               </DatePickerFooter>
@@ -620,13 +638,13 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = (props) => {
               <Divider />
             </>
           )}
-          suffixIcon={(
+          suffixIcon={
             <EventIcon
               width={20}
               height={20}
               fill={errorMessage ? THEME.token?.colorError : THEME.token?.bw10}
             />
-          )}
+          }
           onChange={onChangeDatePicker}
         />
       ) : (
@@ -639,12 +657,7 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = (props) => {
           <Input
             onClick={() => toggleOpenDropdown()}
             readOnly
-            suffix={(
-              <EventIcon
-                width={20}
-                height={20}
-              />
-            )}
+            suffix={<EventIcon width={20} height={20} />}
             style={inputStyle}
             value={dayjs(dateDisplay, format).format(formatDisplay)}
             status={errorMessage ? 'error' : ''}

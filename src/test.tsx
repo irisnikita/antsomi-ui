@@ -3,15 +3,13 @@ import ReactDOM from 'react-dom';
 
 import '@antscorp/icons/main.css';
 
-import {
-  ConfigProvider, DatePicker,
-} from './components';
+import { ConfigProvider, DatePicker } from './components';
 
 export const App = () => {
   const [state, setState] = useState<{
-    date: string,
-    option: any,
-    format: string
+    date: string;
+    option: any;
+    format: string;
   }>({
     option: {
       dateType: 'today',
@@ -24,25 +22,30 @@ export const App = () => {
   });
 
   return (
-    <DatePicker.AdvancedPicker
-      date={state.date}
-      option={state.option}
-      format={state.format}
-      onUpdatedNewDate={(newDate) => {
-        setState((state) => ({ ...state, date: newDate }));
+    <DatePicker.AdvancedRangePicker
+      timeRange={{
+        startDate: {
+          date: '',
+          calculationDate: 'years',
+          value: 1,
+          calculationType: 'minus',
+          dateType: 'today',
+        },
+        endDate: {
+          date: '',
+          calculationDate: 'days',
+          value: 1,
+          calculationType: 'minus',
+          dateType: 'today',
+        },
       }}
-      onApply={({ option, date }) => setState((state) => ({
-        ...state,
-        option,
-        date,
-      }))}
     />
   );
 };
 
 ReactDOM.render(
   <React.StrictMode>
-    <ConfigProvider>
+    <ConfigProvider locale="vi">
       <App />
     </ConfigProvider>
   </React.StrictMode>,
