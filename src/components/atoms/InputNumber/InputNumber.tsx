@@ -6,7 +6,7 @@ import { InputNumber as AntdInputNumber, InputNumberProps as AntdInputNumberProp
 // Icons
 import Icon from '@antscorp/icons';
 
-interface InputNumberProps extends AntdInputNumberProps {
+export interface InputNumberProps extends AntdInputNumberProps {
   showHandler?: boolean;
 }
 

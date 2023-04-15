@@ -22,5 +22,5 @@
     "noImplicitAny": false,
     "baseUrl": "./"
   },
-  "include": ["src", "jest-setup.ts"]
+  "include": ["src"]
 }

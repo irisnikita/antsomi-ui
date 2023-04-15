@@ -17,9 +17,6 @@ import { TLocale } from 'src/types';
 // Initialize languages
 import 'src/locales/i18n';
 
-// Dayjs
-import('dayjs/locale/vi');
-
 interface ConfigProviderProps extends Omit<AntdConfigProviderProps, 'locale'> {
   children?: ReactNode;
   locale?: TLocale;

@@ -43,18 +43,18 @@ module.exports = {
         exclude: /\.module.(scss)$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
-      {
-        type: 'javascript/auto',
-        test: /\.json$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: './json/[contenthash].[ext]',
-            },
-          },
-        ],
-      },
+      // {
+      //   type: 'javascript/auto',
+      //   test: /\.json$/,
+      //   use: [
+      //     {
+      //       loader: 'file-loader',
+      //       options: {
+      //         name: './json/[contenthash].[ext]',
+      //       },
+      //     },
+      //   ],
+      // },
     ],
   },
   externals: {
