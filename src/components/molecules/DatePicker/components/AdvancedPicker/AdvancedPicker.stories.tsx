@@ -9,7 +9,20 @@ import { AdvancedPicker } from './AdvancedPicker';
 export default {
   title: 'Molecules/DatePicker/AdvancedPicker',
   component: AdvancedPicker,
-  argTypes: {},
+  argTypes: {
+    label: {
+      name: 'label',
+      defaultValue: undefined,
+      description: 'Show label for AdvancedPicker input',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+      control: {
+        type: 'text',
+      },
+    },
+  },
   parameters: {
     docs: {
       description: {

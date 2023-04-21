@@ -47,3 +47,8 @@ export const DatePickerFooter = styled.div`
   bottom: 0px;
   width: 100%;
 `;
+
+export const CalendarIconWrapper = styled.div`
+  cursor: pointer;
+  pointer-events: all;
+`;

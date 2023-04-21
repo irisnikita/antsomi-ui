@@ -30,6 +30,7 @@ import {
   DropdownHeader,
   DatePickerFooter,
   DropdownFooter,
+  CalendarIconWrapper,
 } from './styled';
 
 // Constants
@@ -54,6 +55,7 @@ import { translations } from 'src/locales/translations';
 export interface AdvancedPickerProps {
   label?: string;
   dateTypeKeysShow?: string[];
+  calculationTypeKeysShow?: string[];
   defaultDateTypeKey?: string;
   valueType?: string;
   option?: TOption;
@@ -81,6 +83,7 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
     label,
     inputStyle,
     dateTypeKeysShow,
+    calculationTypeKeysShow,
     defaultDateTypeKey,
     valueType,
     option: propsOption,
@@ -151,6 +154,18 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
         return CALCULATION_DATES;
     }
   }, [valueType]);
+
+  const newCalculationTypes = useMemo(() => {
+    if (calculationTypeKeysShow && calculationTypeKeysShow.length) {
+      const draftCalculationTypes = CALCULATION_TYPES.filter(calculationType =>
+        calculationTypeKeysShow.some(key => key === calculationType.value),
+      );
+
+      return draftCalculationTypes;
+    }
+
+    return CALCULATION_TYPES;
+  }, [calculationTypeKeysShow]);
 
   const pickerType = useMemo(() => {
     switch (valueType) {
@@ -549,7 +564,7 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
         {renderDateTypeOptions()}
 
         <Select
-          options={CALCULATION_TYPES.map(({ label, value }) => ({ value, label: t(label) }))}
+          options={newCalculationTypes.map(({ label, value }) => ({ value, label: t(label) }))}
           value={option.calculationType.value}
           onChange={value => {
             const calculationType = CALCULATION_TYPES.find(
@@ -639,11 +654,13 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
             </>
           )}
           suffixIcon={
-            <EventIcon
-              width={20}
-              height={20}
-              fill={errorMessage ? THEME.token?.colorError : THEME.token?.bw10}
-            />
+            <CalendarIconWrapper onClick={() => toggleOpenDropdown()}>
+              <EventIcon
+                width={20}
+                height={20}
+                fill={errorMessage ? THEME.token?.colorError : THEME.token?.bw10}
+              />
+            </CalendarIconWrapper>
           }
           onChange={onChangeDatePicker}
         />
@@ -657,7 +674,11 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
           <Input
             onClick={() => toggleOpenDropdown()}
             readOnly
-            suffix={<EventIcon width={20} height={20} />}
+            suffix={
+              <CalendarIconWrapper onClick={() => toggleOpenDropdown()}>
+                <EventIcon width={20} height={20} />
+              </CalendarIconWrapper>
+            }
             style={inputStyle}
             value={dayjs(dateDisplay, format).format(formatDisplay)}
             status={errorMessage ? 'error' : ''}

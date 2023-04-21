@@ -23,6 +23,7 @@ import { handleError } from 'src/utils/handleError';
 import { translations } from 'src/locales/translations';
 
 export interface AdvancedRangePickerProps {
+  calculationTypeKeysShow?: string[];
   timeRange: TTimeRange;
   errorMessage?: string;
   showLabel?: boolean;
@@ -36,7 +37,7 @@ export const AdvancedRangePicker: React.FC<AdvancedRangePickerProps> = props => 
   const { t } = useTranslation();
 
   // Props
-  const { timeRange, errorMessage, showLabel, onChange } = props;
+  const { timeRange, errorMessage, showLabel, calculationTypeKeysShow, onChange } = props;
 
   // Handles
   const onUpdateTimeRange = (
@@ -82,6 +83,7 @@ export const AdvancedRangePicker: React.FC<AdvancedRangePickerProps> = props => 
         format={ADVANCED_RANGE_PICKER_FORMAT.startDate}
         errorMessage={errorMessage}
         disableAfterDate={timeRange.endDate.date}
+        calculationTypeKeysShow={calculationTypeKeysShow}
         onUpdatedNewDate={date => onUpdateTimeRange('startDate', { date }, 'system')}
         onApply={({ date, option }) => onUpdateTimeRange('startDate', { date, ...option }, 'user')}
       />
@@ -94,6 +96,7 @@ export const AdvancedRangePicker: React.FC<AdvancedRangePickerProps> = props => 
         type="endDate"
         format={ADVANCED_RANGE_PICKER_FORMAT.endDate}
         errorMessage={errorMessage}
+        calculationTypeKeysShow={calculationTypeKeysShow}
         onUpdatedNewDate={date => onUpdateTimeRange('endDate', { date }, 'system')}
         onApply={({ date, option }) => onUpdateTimeRange('endDate', { date, ...option }, 'user')}
       />
