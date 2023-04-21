@@ -166,7 +166,8 @@ export const GlobalStyle: React.FC<GlobalStyleProps> = () => (
       }
 
       // Input Number
-      .antsomi-input-number {
+      .antsomi-input-number,
+      .antsomi-input-number-affix-wrapper {
         border-width: 0 0 1px 0 !important;
         box-shadow: none !important;
 
@@ -175,6 +176,12 @@ export const GlobalStyle: React.FC<GlobalStyleProps> = () => (
             opacity: 1;
           }
         }
+      }
+
+      .antsomi-input-number-group-addon {
+        border-width: 0 0 1px 0 !important;
+        background-color: ${THEME.token?.bw0} !important;
+        box-shadow: none !important;
       }
 
       .antsomi-input-number:hover {

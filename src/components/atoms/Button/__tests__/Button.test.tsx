@@ -6,7 +6,7 @@ import { render, fireEvent } from '@testing-library/react';
 import { Button } from '../Button';
 
 describe('Button', () => {
-  it('renders a button', () => {
+  it('renders a Button Component', () => {
     const { getByRole } = render(<Button>Click me</Button>);
 
     expect(getByRole('button')).toBeInTheDocument();

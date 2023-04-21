@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1681556883044" clover="3.2.0">
-  <project timestamp="1681556883044" name="All files">
-    <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1" elements="2" coveredelements="2" complexity="0" loc="1" ncloc="1" packages="1" files="1" classes="1"/>
-    <file name="Button.tsx" path="/Users/vinguyen/Workspace/Antsomi/antsomi-ui/src/components/atoms/Button/Button.tsx">
+<coverage generated="1681617391001" clover="3.2.0">
+  <project timestamp="1681617391001" name="All files">
+    <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2" elements="11" coveredelements="11" complexity="0" loc="9" ncloc="9" packages="2" files="2" classes="2"/>
+    <package name="Button">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <line num="1" count="6" type="stmt"/>
-    </file>
+      <file name="Button.tsx" path="/Users/vinguyen/Workspace/Antsomi/antsomi-ui/src/components/atoms/Button/Button.tsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="6" type="stmt"/>
+      </file>
+    </package>
+    <package name="InputNumber">
+      <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="InputNumber.tsx" path="/Users/vinguyen/Workspace/Antsomi/antsomi-ui/src/components/atoms/InputNumber/InputNumber.tsx">
+        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+      </file>
+    </package>
   </project>
 </coverage>

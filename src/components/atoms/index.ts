@@ -7,3 +7,4 @@ export { Space } from './Space';
 export { Tag } from './Tag';
 export { Tooltip } from './Tooltip';
 export { Typography } from './Typography';
+export { Checkbox } from './Checkbox';
