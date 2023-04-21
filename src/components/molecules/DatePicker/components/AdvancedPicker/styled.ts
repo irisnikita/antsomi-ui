@@ -49,6 +49,7 @@ export const DatePickerFooter = styled.div`
 `;
 
 export const CalendarIconWrapper = styled.div`
+  display: inline-flex;
   cursor: pointer;
   pointer-events: all;
 `;

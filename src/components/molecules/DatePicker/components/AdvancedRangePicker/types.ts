@@ -1,5 +1,5 @@
 // Types
-import { TOption } from '../AdvancedPicker/types';
+import { TCalculationType, TOption } from '../AdvancedPicker/types';
 
 export type TOnChangeMode = 'system' | 'user';
 
@@ -11,4 +11,8 @@ export type TTimeRange = {
 export type TOnChangePayload = {
   timeRange: TTimeRange;
   mode: 'system' | 'user';
+};
+
+export type TDateConfig = {
+  calculationTypeKeysShow?: TCalculationType[];
 };

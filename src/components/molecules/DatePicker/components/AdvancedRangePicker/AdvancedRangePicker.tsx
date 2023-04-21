@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 // Types
 import { TOption } from '../AdvancedPicker/types';
-import { TOnChangeMode, TOnChangePayload, TTimeRange } from './types';
+import { TDateConfig, TOnChangeMode, TOnChangePayload, TTimeRange } from './types';
 
 // Atoms
 import { Space } from 'src/components/atoms';
@@ -23,7 +23,8 @@ import { handleError } from 'src/utils/handleError';
 import { translations } from 'src/locales/translations';
 
 export interface AdvancedRangePickerProps {
-  calculationTypeKeysShow?: string[];
+  startDateConfig?: TDateConfig;
+  endDateConfig?: TDateConfig;
   timeRange: TTimeRange;
   errorMessage?: string;
   showLabel?: boolean;
@@ -37,7 +38,7 @@ export const AdvancedRangePicker: React.FC<AdvancedRangePickerProps> = props => 
   const { t } = useTranslation();
 
   // Props
-  const { timeRange, errorMessage, showLabel, calculationTypeKeysShow, onChange } = props;
+  const { timeRange, errorMessage, showLabel, startDateConfig, endDateConfig, onChange } = props;
 
   // Handles
   const onUpdateTimeRange = (
@@ -83,7 +84,7 @@ export const AdvancedRangePicker: React.FC<AdvancedRangePickerProps> = props => 
         format={ADVANCED_RANGE_PICKER_FORMAT.startDate}
         errorMessage={errorMessage}
         disableAfterDate={timeRange.endDate.date}
-        calculationTypeKeysShow={calculationTypeKeysShow}
+        calculationTypeKeysShow={startDateConfig?.calculationTypeKeysShow}
         onUpdatedNewDate={date => onUpdateTimeRange('startDate', { date }, 'system')}
         onApply={({ date, option }) => onUpdateTimeRange('startDate', { date, ...option }, 'user')}
       />
@@ -96,7 +97,7 @@ export const AdvancedRangePicker: React.FC<AdvancedRangePickerProps> = props => 
         type="endDate"
         format={ADVANCED_RANGE_PICKER_FORMAT.endDate}
         errorMessage={errorMessage}
-        calculationTypeKeysShow={calculationTypeKeysShow}
+        calculationTypeKeysShow={endDateConfig?.calculationTypeKeysShow}
         onUpdatedNewDate={date => onUpdateTimeRange('endDate', { date }, 'system')}
         onApply={({ date, option }) => onUpdateTimeRange('endDate', { date, ...option }, 'user')}
       />

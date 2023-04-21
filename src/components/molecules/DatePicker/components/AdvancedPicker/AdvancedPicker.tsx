@@ -50,12 +50,11 @@ import { THEME } from 'src/constants';
 import { TAdvancedType, TCalculationDate, TCalculationType, TOperatorKey, TOption } from './types';
 import { RangePickerProps } from 'antd/es/date-picker';
 import { EventIcon } from 'src/components/icons';
-import { translations } from 'src/locales/translations';
 
 export interface AdvancedPickerProps {
   label?: string;
   dateTypeKeysShow?: string[];
-  calculationTypeKeysShow?: string[];
+  calculationTypeKeysShow?: TCalculationType[];
   defaultDateTypeKey?: string;
   valueType?: string;
   option?: TOption;
@@ -676,7 +675,7 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
             readOnly
             suffix={
               <CalendarIconWrapper onClick={() => toggleOpenDropdown()}>
-                <EventIcon width={20} height={20} />
+                <EventIcon width={19} height={19} />
               </CalendarIconWrapper>
             }
             style={inputStyle}
