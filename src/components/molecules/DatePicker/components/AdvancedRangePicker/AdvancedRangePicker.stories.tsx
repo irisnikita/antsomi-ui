@@ -146,3 +146,99 @@ Basic.parameters = {
     },
   },
 };
+
+export const HideTimeLabel: ComponentStory<typeof AdvancedRangePicker> = () => {
+  // State
+  const [timeRange, setTimeRange] = useState<TTimeRange>({
+    startDate: {
+      date: '',
+      calculationDate: 'years',
+      value: 1,
+      calculationType: 'minus',
+      dateType: 'today',
+    },
+    endDate: {
+      date: '',
+      calculationDate: 'days',
+      value: 1,
+      calculationType: 'minus',
+      dateType: 'today',
+    },
+  });
+
+  // Handlers
+  const onChangeAdvancedRangePicker = ({ timeRange, mode: _mode }) => {
+    try {
+      setTimeRange(previousTimeRange => ({ ...previousTimeRange, ...timeRange }));
+    } catch (error) {
+      // Handle Error
+    }
+  };
+
+  return (
+    <AdvancedRangePicker
+      showTime={false}
+      timeRange={timeRange}
+      onChange={onChangeAdvancedRangePicker}
+    />
+  );
+};
+
+HideTimeLabel.args = {};
+HideTimeLabel.parameters = {
+  docs: {
+    description: {
+      story: "Don't want to show time in popup",
+    },
+    source: {
+      code: dedent`
+      // Libraries
+      import { React } from 'react';
+
+      // Components
+      import { DatePicker, TAdvancedRangePickerTimeRange } from '@antscorp/antsomi-ui';
+
+      const { AdvancedRangePicker } = DatePicker;
+
+      export const App = () => {
+        // State
+        const [timeRange, setTimeRange] = useState<TAdvancedRangePickerTimeRange>({
+          startDate: {
+            date: '',
+            calculationDate: 'years',
+            value: 1,
+            calculationType: 'minus',
+            dateType: 'today',
+          },
+          endDate: {
+            date: '',
+            calculationDate: 'days',
+            value: 1,
+            calculationType: 'minus',
+            dateType: 'today',
+          },
+        });
+
+        // Handlers
+        const onChangeAdvancedRangePicker = ({ timeRange, mode: _mode }) => {
+          try {
+            setTimeRange((previousTimeRange) => ({ ...previousTimeRange, ...timeRange }));
+          } catch (error) {
+            // Handle Error
+          }
+        };
+
+        return (
+          <AdvancedRangePicker
+            showTime={false}
+            timeRange={timeRange}
+            onChange={onChangeAdvancedRangePicker}
+          />
+        );
+      };
+      `,
+      language: 'tsx',
+      type: 'auto',
+    },
+  },
+};

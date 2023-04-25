@@ -28,6 +28,7 @@ export interface AdvancedRangePickerProps {
   timeRange: TTimeRange;
   errorMessage?: string;
   showLabel?: boolean;
+  showTime?: boolean;
   onChange?: ({ timeRange, mode }: TOnChangePayload) => void;
 }
 
@@ -38,7 +39,8 @@ export const AdvancedRangePicker: React.FC<AdvancedRangePickerProps> = props => 
   const { t } = useTranslation();
 
   // Props
-  const { timeRange, errorMessage, showLabel, startDateConfig, endDateConfig, onChange } = props;
+  const { timeRange, errorMessage, showLabel, startDateConfig, endDateConfig, showTime, onChange } =
+    props;
 
   // Handles
   const onUpdateTimeRange = (
@@ -84,6 +86,7 @@ export const AdvancedRangePicker: React.FC<AdvancedRangePickerProps> = props => 
         format={ADVANCED_RANGE_PICKER_FORMAT.startDate}
         errorMessage={errorMessage}
         disableAfterDate={timeRange.endDate.date}
+        showTime={showTime}
         calculationTypeKeysShow={startDateConfig?.calculationTypeKeysShow}
         onUpdatedNewDate={date => onUpdateTimeRange('startDate', { date }, 'system')}
         onApply={({ date, option }) => onUpdateTimeRange('startDate', { date, ...option }, 'user')}
@@ -97,6 +100,7 @@ export const AdvancedRangePicker: React.FC<AdvancedRangePickerProps> = props => 
         type="endDate"
         format={ADVANCED_RANGE_PICKER_FORMAT.endDate}
         errorMessage={errorMessage}
+        showTime={showTime}
         calculationTypeKeysShow={endDateConfig?.calculationTypeKeysShow}
         onUpdatedNewDate={date => onUpdateTimeRange('endDate', { date }, 'system')}
         onApply={({ date, option }) => onUpdateTimeRange('endDate', { date, ...option }, 'user')}
@@ -124,4 +128,5 @@ AdvancedRangePicker.defaultProps = {
   },
   errorMessage: '',
   showLabel: true,
+  showTime: true,
 };

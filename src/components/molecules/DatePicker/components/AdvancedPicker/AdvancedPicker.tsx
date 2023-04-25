@@ -67,6 +67,7 @@ export interface AdvancedPickerProps {
   disableAfterDate?: string;
   disableBeforeDate?: string;
   errorMessage?: string;
+  showTime?: boolean;
   onUpdatedNewDate?: (newDate: any) => void;
   onApply?: ({ date, option }: { date: string; option: TOption }) => void;
 }
@@ -94,6 +95,7 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
     errorMessage,
     disableAfterDate,
     disableBeforeDate,
+    showTime,
     onUpdatedNewDate,
     onApply,
   } = props;
@@ -398,7 +400,7 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
             .locale(locale || 'en')
             .format(formatLabel)}
         </div>
-        {![VALUE_TYPES.YEAR, VALUE_TYPES.YEAR_MONTH].includes(valueType || '') && (
+        {![VALUE_TYPES.YEAR, VALUE_TYPES.YEAR_MONTH].includes(valueType || '') && showTime && (
           <div>
             {dayjs(date || new Date(), format)
               .locale(locale || 'en')
@@ -700,4 +702,5 @@ AdvancedPicker.defaultProps = {
   },
   formatInputDisplay: 'MMM DD, YYYY',
   valueType: VALUE_TYPES.YEAR_MONTH_DAY,
+  showTime: true,
 };
