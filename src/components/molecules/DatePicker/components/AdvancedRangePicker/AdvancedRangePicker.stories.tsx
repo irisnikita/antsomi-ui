@@ -242,3 +242,54 @@ HideTimeLabel.parameters = {
     },
   },
 };
+
+export const ShowCalculationTypeCondition: ComponentStory<typeof AdvancedRangePicker> = () => {
+  // State
+  const [timeRange, setTimeRange] = useState<TTimeRange>({
+    startDate: {
+      date: '',
+      calculationDate: 'years',
+      value: 1,
+      calculationType: 'minus',
+      dateType: 'today',
+    },
+    endDate: {
+      date: '',
+      calculationDate: 'days',
+      value: 1,
+      calculationType: 'minus',
+      dateType: 'today',
+    },
+  });
+
+  // Handlers
+  const onChangeAdvancedRangePicker = ({ timeRange, mode: _mode }) => {
+    try {
+      setTimeRange(previousTimeRange => ({ ...previousTimeRange, ...timeRange }));
+    } catch (error) {
+      // Handle Error
+    }
+  };
+
+  return (
+    <AdvancedRangePicker
+      showCalculationTypeCondition={{
+        dateType: {
+          today: ['minus'],
+        },
+      }}
+      showTime={false}
+      timeRange={timeRange}
+      onChange={onChangeAdvancedRangePicker}
+    />
+  );
+};
+
+ShowCalculationTypeCondition.args = {};
+ShowCalculationTypeCondition.parameters = {
+  docs: {
+    description: {
+      story: 'Here is an example to show the calculation type by dateType',
+    },
+  },
+};

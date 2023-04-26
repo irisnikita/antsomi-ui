@@ -47,13 +47,21 @@ import {
 import { THEME } from 'src/constants';
 
 // Types
-import { TAdvancedType, TCalculationDate, TCalculationType, TOperatorKey, TOption } from './types';
+import {
+  TAdvancedType,
+  TCalculationDate,
+  TCalculationType,
+  TOperatorKey,
+  TOption,
+  TShowCalculationTypeCondition,
+} from './types';
 import { RangePickerProps } from 'antd/es/date-picker';
 import { EventIcon } from 'src/components/icons';
 
 export interface AdvancedPickerProps {
   label?: string;
   dateTypeKeysShow?: string[];
+  showCalculationTypeCondition?: TShowCalculationTypeCondition;
   calculationTypeKeysShow?: TCalculationType[];
   defaultDateTypeKey?: string;
   valueType?: string;
@@ -84,6 +92,7 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
     inputStyle,
     dateTypeKeysShow,
     calculationTypeKeysShow,
+    showCalculationTypeCondition,
     defaultDateTypeKey,
     valueType,
     option: propsOption,
@@ -155,18 +164,6 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
         return CALCULATION_DATES;
     }
   }, [valueType]);
-
-  const newCalculationTypes = useMemo(() => {
-    if (calculationTypeKeysShow && calculationTypeKeysShow.length) {
-      const draftCalculationTypes = CALCULATION_TYPES.filter(calculationType =>
-        calculationTypeKeysShow.some(key => key === calculationType.value),
-      );
-
-      return draftCalculationTypes;
-    }
-
-    return CALCULATION_TYPES;
-  }, [calculationTypeKeysShow]);
 
   const pickerType = useMemo(() => {
     switch (valueType) {
@@ -260,6 +257,36 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
     dateDisplay: dayjs().format(DEFAULT_DATE_FORMAT),
   });
   const { isOpen, option, date, dateDisplay } = state;
+
+  const newCalculationTypes = useMemo(() => {
+    if (calculationTypeKeysShow && calculationTypeKeysShow.length) {
+      const draftCalculationTypes = CALCULATION_TYPES.filter(calculationType =>
+        calculationTypeKeysShow.some(key => key === calculationType.value),
+      );
+
+      return draftCalculationTypes;
+    }
+
+    if (showCalculationTypeCondition && option.dateType) {
+      if (showCalculationTypeCondition.dateType[option.dateType.value]) {
+        const draftCalculationTypes = showCalculationTypeCondition.dateType[
+          option.dateType.value
+        ]?.map(dateType => CALCULATION_TYPES.find(({ value }) => value === dateType));
+
+        if (!draftCalculationTypes.find(({ value }) => value === option.calculationType.value)) {
+          setState(state => ({
+            ...state,
+            option: { ...state.option, calculationType: draftCalculationTypes[0] },
+          }));
+        }
+
+        return draftCalculationTypes;
+      }
+    }
+
+    return CALCULATION_TYPES;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [calculationTypeKeysShow, showCalculationTypeCondition, option.dateType]);
 
   // Hooks
   const { token } = useToken();

@@ -23,6 +23,7 @@ export const App = () => {
 
   return (
     <DatePicker.AdvancedRangePicker
+      showTime={false}
       timeRange={{
         startDate: {
           date: '',

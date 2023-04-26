@@ -5,6 +5,10 @@ export type TOption = {
   value: number;
 };
 
+export type TShowCalculationTypeCondition = {
+  dateType: Partial<Record<TDateType, TCalculationType[]>>;
+};
+
 export type TDateType =
   | 'today'
   | 'first_day_of_week_mon_sun'

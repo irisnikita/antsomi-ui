@@ -91,4 +91,10 @@ const Template: ComponentStory<typeof AdvancedPicker> = args => <AdvancedPicker 
 
 export const Default = Template.bind({});
 
-Default.args = {};
+Default.args = {
+  showCalculationTypeCondition: {
+    dateType: {
+      today: ['minus'],
+    },
+  },
+};
