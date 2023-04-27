@@ -23,6 +23,7 @@ import { handleError } from 'src/utils/handleError';
 import { translations } from 'src/locales/translations';
 
 export interface AdvancedRangePickerProps {
+  disabled?: boolean;
   showCalculationTypeCondition?: TShowCalculationTypeCondition;
   startDateConfig?: TDateConfig;
   endDateConfig?: TDateConfig;
@@ -48,6 +49,7 @@ export const AdvancedRangePicker: React.FC<AdvancedRangePickerProps> = props => 
     endDateConfig,
     showTime,
     showCalculationTypeCondition,
+    disabled,
     onChange,
   } = props;
 
@@ -87,6 +89,7 @@ export const AdvancedRangePicker: React.FC<AdvancedRangePickerProps> = props => 
   return (
     <Space size={20}>
       <AdvancedPicker
+        disabled={disabled}
         label={showLabel ? t(translations.datePicker.startDate) || '' : ''}
         date={timeRange.startDate.date}
         option={omit(timeRange.startDate, 'date')}
@@ -103,6 +106,7 @@ export const AdvancedRangePicker: React.FC<AdvancedRangePickerProps> = props => 
       />
 
       <AdvancedPicker
+        disabled={disabled}
         label={showLabel ? t(translations.datePicker.endDate) || '' : ''}
         date={timeRange.endDate.date}
         option={omit(timeRange.endDate, 'date')}
@@ -138,6 +142,7 @@ AdvancedRangePicker.defaultProps = {
     },
   },
   errorMessage: '',
+  disabled: false,
   showLabel: true,
   showTime: true,
 };

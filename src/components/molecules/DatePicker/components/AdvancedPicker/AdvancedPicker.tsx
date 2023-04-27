@@ -60,6 +60,7 @@ import { EventIcon } from 'src/components/icons';
 
 export interface AdvancedPickerProps {
   label?: string;
+  disabled?: boolean;
   dateTypeKeysShow?: string[];
   showCalculationTypeCondition?: TShowCalculationTypeCondition;
   calculationTypeKeysShow?: TCalculationType[];
@@ -105,6 +106,7 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
     disableAfterDate,
     disableBeforeDate,
     showTime,
+    disabled,
     onUpdatedNewDate,
     onApply,
   } = props;
@@ -642,7 +644,8 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
 
       {option.dateType.value === 'fixed' ? (
         <DatePicker
-          open={isOpen}
+          disabled={disabled}
+          open={!disabled && isOpen}
           allowClear={false}
           inputReadOnly
           status={errorMessage ? 'error' : ''}
@@ -682,7 +685,12 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
             </>
           )}
           suffixIcon={
-            <CalendarIconWrapper onClick={() => toggleOpenDropdown()}>
+            <CalendarIconWrapper
+              style={{
+                pointerEvents: disabled ? 'none' : 'all',
+              }}
+              onClick={() => toggleOpenDropdown()}
+            >
               <EventIcon
                 width={20}
                 height={20}
@@ -694,16 +702,23 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
         />
       ) : (
         <Dropdown
-          open={isOpen}
+          disabled={disabled}
+          open={!disabled && isOpen}
           dropdownRender={dropdownRender}
           trigger={['click']}
           onOpenChange={() => toggleOpenDropdown()}
         >
           <Input
+            disabled={disabled}
             onClick={() => toggleOpenDropdown()}
             readOnly
             suffix={
-              <CalendarIconWrapper onClick={() => toggleOpenDropdown()}>
+              <CalendarIconWrapper
+                style={{
+                  pointerEvents: disabled ? 'none' : 'all',
+                }}
+                onClick={() => toggleOpenDropdown()}
+              >
                 <EventIcon width={19} height={19} />
               </CalendarIconWrapper>
             }
@@ -730,4 +745,5 @@ AdvancedPicker.defaultProps = {
   formatInputDisplay: 'MMM DD, YYYY',
   valueType: VALUE_TYPES.YEAR_MONTH_DAY,
   showTime: true,
+  disabled: false,
 };

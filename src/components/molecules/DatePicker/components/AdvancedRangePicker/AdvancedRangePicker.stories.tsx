@@ -273,6 +273,7 @@ export const ShowCalculationTypeCondition: ComponentStory<typeof AdvancedRangePi
 
   return (
     <AdvancedRangePicker
+      disabled
       showCalculationTypeCondition={{
         dateType: {
           today: ['minus'],
