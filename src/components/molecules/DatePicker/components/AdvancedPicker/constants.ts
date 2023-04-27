@@ -2,7 +2,6 @@
 import { TAdvancedType } from './types';
 
 export const DATE_TYPES = [
-  { value: 'fixed', label: 'datePicker.dateTypes.fixed' },
   { value: 'today', label: 'datePicker.dateTypes.today' },
   { value: 'first_day_of_week_mon_sun', label: 'datePicker.dateTypes.firstDayOfWeekMonSun' },
   { value: 'first_day_of_week_sun_sat', label: 'datePicker.dateTypes.firstDayOfWeekSunSat' },
@@ -14,6 +13,7 @@ export const DATE_TYPES = [
   { value: 'last_day_of_month', label: 'datePicker.dateTypes.lastDayOfMonth' },
   { value: 'last_day_of_quarter', label: 'datePicker.dateTypes.lastDayOfQuarter' },
   { value: 'last_day_of_year', label: 'datePicker.dateTypes.lastDayOfYear' },
+  { value: 'fixed', label: 'datePicker.dateTypes.fixed' },
 ];
 
 export const CALCULATION_TYPES = [
