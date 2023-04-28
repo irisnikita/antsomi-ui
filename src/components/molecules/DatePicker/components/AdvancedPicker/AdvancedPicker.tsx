@@ -608,6 +608,7 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
         <InputNumber
           value={option.value}
           style={{ width: '100%' }}
+          min={0}
           showHandler={false}
           onChange={value => onChangeOption({ value })}
         />
