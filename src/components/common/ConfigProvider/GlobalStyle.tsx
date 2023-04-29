@@ -238,6 +238,10 @@ export const GlobalStyle: React.FC<GlobalStyleProps> = () => (
 
           .antsomi-picker-date-panel {
             width: 280px !important;
+
+            .antsomi-picker-cell {
+              pointer-events: none !important;
+            }
           }
         }
 

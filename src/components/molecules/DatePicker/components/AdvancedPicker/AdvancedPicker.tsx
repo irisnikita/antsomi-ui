@@ -699,7 +699,22 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
               />
             </CalendarIconWrapper>
           }
-          onChange={onChangeDatePicker}
+          dateRender={current => (
+            <div
+              className="antsomi-picker-cell-inner"
+              style={{ pointerEvents: 'all' }}
+              onClick={e => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                onChangeDatePicker(current);
+              }}
+            >
+              {current.date()}
+            </div>
+          )}
+          // onChange={onChangeDatePicker}
+          onOpenChange={() => toggleOpenDropdown()}
         />
       ) : (
         <Dropdown
