@@ -117,4 +117,7 @@ THEME.components = {
   Divider: {
     marginLG: 10,
   },
+  Checkbox: {
+    controlInteractiveSize: 18,
+  },
 };
