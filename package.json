@@ -18,7 +18,8 @@
     "build-storybook": "build-storybook",
     "serve-storybook": "serve storybook-static",
     "version": "auto-changelog -p && git add CHANGELOG.md",
-    "test": "jest --onlyChanged",
+    "test": "jest",
+    "test:changed": "jest --onlyChanged",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
   },
