@@ -6,8 +6,12 @@ import dayjs from 'dayjs';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
+// Hooks
+import { useDeepCompareEffect } from 'src/hooks';
+
 // Icons
 import Icon from '@antscorp/icons';
+import { EventIcon } from 'src/components/icons';
 
 // Atoms
 import { Input, InputNumber, Divider, Space, Button, Typography } from 'src/components/atoms';
@@ -56,7 +60,6 @@ import {
   TShowCalculationTypeCondition,
 } from './types';
 import { RangePickerProps } from 'antd/es/date-picker';
-import { EventIcon } from 'src/components/icons';
 
 export interface AdvancedPickerProps {
   label?: string;
@@ -302,7 +305,7 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
   };
 
   // Effects
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     try {
       if (isOpen) {
         setState(state => ({ ...state, option: state.optionSelected, date: state.dateDisplay }));
@@ -573,7 +576,11 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
       onChange={value => {
         const dateType = newDateTypes.find(dateType => dateType.value === value);
 
-        onChangeOption({ dateType });
+        toggleOpenDropdown(true);
+
+        setTimeout(() => {
+          onChangeOption({ dateType });
+        }, 100);
       }}
     />
   );
