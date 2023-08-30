@@ -10,16 +10,16 @@ import { TOption, TShowCalculationTypeCondition } from '../AdvancedPicker/types'
 import { TDateConfig, TOnChangeMode, TOnChangePayload, TTimeRange } from './types';
 
 // Atoms
-import { Space } from 'src/components/atoms';
+import { Space } from '../../../../atoms';
 
 // Molecules
-import { AdvancedPicker } from 'src/components/molecules/DatePicker/components/AdvancedPicker';
+import { AdvancedPicker } from '../AdvancedPicker';
 
 // Constants
 import { ADVANCED_RANGE_PICKER_FORMAT } from './constants';
 
 // Utils
-import { handleError } from 'src/utils/handleError';
+import { handleError } from 'src/utils';
 import { translations } from 'src/locales/translations';
 
 export interface AdvancedRangePickerProps {

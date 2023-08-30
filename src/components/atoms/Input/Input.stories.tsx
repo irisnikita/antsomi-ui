@@ -4,11 +4,15 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 // Components
-import { Input } from './Input';
-import { Space } from 'src/components/atoms/Space';
+import { Space, Tag, Input } from '..';
+import { TextArea as AntdCustomTextArea } from './styled';
+import { Table } from '../../organism';
 
 // Types
 import Icon from '@antscorp/icons';
+
+// Constants
+import { TABLE_API_COLUMNS } from 'src/constants';
 
 // Variables
 const exampleIcon = <Icon type="icon-ants-search-2" />;
@@ -243,10 +247,10 @@ BasicUsage.parameters = {
 
 export const TextArea: ComponentStory<any> = () => (
   <>
-    <Input.TextArea rows={4} />
+    <AntdCustomTextArea rows={4} />
     <br />
     <br />
-    <Input.TextArea rows={4} placeholder="maxLength is 6" maxLength={6} />
+    <AntdCustomTextArea rows={4} placeholder="maxLength is 6" maxLength={6} />
   </>
 );
 
@@ -283,6 +287,181 @@ BorderLess.parameters = {
   docs: {
     description: {
       story: 'No border.',
+    },
+  },
+};
+
+export const InputTextAreaAPI: ComponentStory<any> = () => {
+  const dataSource = [
+    {
+      key: '1',
+      property: 'allowClear',
+      description: 'If allow to remove input content with clear icon',
+      type: 'boolean',
+      default: 'false',
+    },
+    {
+      key: '2',
+      property: 'autoSize',
+      description:
+        'Height autosize feature, can be set to true | false or an object { minRows: 2, maxRows: 6 }',
+      type: 'boolean | object',
+      default: 'false',
+    },
+    {
+      key: '3',
+      property: 'bordered',
+      description: 'Whether has border style',
+      type: 'boolean',
+      default: 'true',
+    },
+    {
+      key: '4',
+      property: 'classNames',
+      description: 'Semantic DOM class',
+      type: 'Record<SemanticDOM, string>',
+      default: '-',
+    },
+    {
+      key: '5',
+      property: 'defaultValue',
+      description: 'The initial input content',
+      type: 'string',
+      default: '-',
+    },
+    {
+      key: '6',
+      property: 'maxLength',
+      description: 'The maximum number of characters in TextArea',
+      type: 'number',
+      default: '-',
+    },
+    {
+      key: '7',
+      property: 'showCount',
+      description: 'Whether to show character count',
+      type: 'boolean | { formatter: (info: { value: string, count: number, maxLength?: number }) => string }',
+      default: 'false',
+    },
+    {
+      key: '8',
+      property: 'styles',
+      description: 'Semantic DOM style',
+      type: 'Record<SemanticDOM, CSSProperties>',
+      default: '-',
+    },
+    {
+      key: '9',
+      property: 'value',
+      description: 'The input content value',
+      type: 'string',
+      default: '-',
+    },
+    {
+      key: '10',
+      property: 'onPressEnter',
+      description: 'The callback function that is triggered when Enter key is pressed',
+      type: 'function(e)',
+      default: '-',
+    },
+    {
+      key: '11',
+      property: 'onResize',
+      description: 'The callback function that is triggered when resize',
+      type: 'function({ width, height })',
+      default: '-',
+    },
+  ];
+
+  return (
+    <>
+      <Table dataSource={dataSource} columns={TABLE_API_COLUMNS} pagination={false} />
+      <p>
+        The rest of the props of <Tag style={{ marginRight: '0' }}>Input.TextArea</Tag> are the same
+        as the original{' '}
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea"
+          style={{ textDecoration: 'none' }}
+        >
+          textarea
+        </a>
+        .
+      </p>
+    </>
+  );
+};
+
+InputTextAreaAPI.parameters = {
+  docs: {
+    description: {
+      story: '',
+    },
+    source: {
+      code: null,
+    },
+  },
+};
+
+export const InputPasswordAPI: ComponentStory<any> = () => {
+  const dataSource = [
+    {
+      key: '1',
+      property: 'iconRender',
+      description: 'Custom toggle button',
+      type: '(visible) => ReactNode',
+      default: '(visible) => (visible ? <EyeOutlined /> : <EyeInvisibleOutlined />)',
+    },
+    {
+      key: '2',
+      property: 'visibilityToggle',
+      description: 'Whether show toggle button or control password visible',
+      type: 'boolean | VisibilityToggle',
+      default: 'true',
+    },
+  ];
+
+  return <Table dataSource={dataSource} columns={TABLE_API_COLUMNS} pagination={false} />;
+};
+
+InputPasswordAPI.parameters = {
+  docs: {
+    description: {
+      story: '',
+    },
+    source: {
+      code: null,
+    },
+  },
+};
+
+export const VisibilityToggleAPI: ComponentStory<any> = () => {
+  const dataSource = [
+    {
+      key: '1',
+      property: 'visible',
+      description: 'Whether the password is show or hide',
+      type: 'boolean',
+      default: 'false',
+    },
+    {
+      key: '2',
+      property: 'onVisibleChange',
+      description: 'Callback executed when visibility of the password is changed',
+      type: 'boolean',
+      default: '-',
+    },
+  ];
+
+  return <Table dataSource={dataSource} columns={TABLE_API_COLUMNS} pagination={false} />;
+};
+
+VisibilityToggleAPI.parameters = {
+  docs: {
+    description: {
+      story: '',
+    },
+    source: {
+      code: null,
     },
   },
 };

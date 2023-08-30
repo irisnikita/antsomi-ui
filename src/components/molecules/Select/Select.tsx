@@ -9,7 +9,7 @@ import type { CustomTagProps } from 'rc-select/lib/BaseSelect';
 import Icon from '@antscorp/icons';
 
 // Constants
-import { THEME } from 'src/constants';
+import { THEME } from '../../../constants';
 import { StyledTag, TagCloseBtn } from './styled';
 
 export interface SelectProps extends AntdSelectProps {}

@@ -7,24 +7,21 @@ import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
 // Hooks
-import { useDeepCompareEffect } from 'src/hooks';
+import { useDeepCompareEffect } from '../../../../../hooks';
 
 // Icons
 import Icon from '@antscorp/icons';
-import { EventIcon } from 'src/components/icons';
+import { EventIcon } from '../../../../icons';
 
 // Atoms
 import { Input, InputNumber, Divider, Space, Button, Typography } from 'src/components/atoms';
 
 // Molecules
-import { Select } from 'src/components/molecules/Select';
-import { Dropdown } from 'src/components/molecules/Dropdown';
-import { DatePicker } from 'src/components/molecules/DatePicker';
+import { Select, Dropdown, DatePicker } from 'src/components';
 
 // Utils
-import { handleError } from 'src/utils/handleError';
+import { handleError, reorder } from 'src/utils';
 import { calculationDateAdvanced } from './utils';
-import { reorder } from 'src/utils/common';
 
 // Styled
 import {
@@ -48,7 +45,7 @@ import {
   YEAR_PICKER_TYPE,
   ADVANCED_PICKER_TYPE,
 } from './constants';
-import { THEME } from 'src/constants';
+import { THEME } from '../../../../../constants';
 
 // Types
 import {
@@ -219,10 +216,6 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
       case TIME_PICKER_TYPE.DATE_HOUR_MINUTE:
         formatDisplay = `DD/MM/YYYY - ${isStartDate ? 'HH:mm:00' : 'HH:mm:59'}`;
         timeFormatDisplay = isStartDate ? 'HH:mm:00' : 'HH:mm:59';
-        break;
-      case TIME_PICKER_TYPE.DATE:
-        formatDisplay = `DD/MM/YYYY - ${isStartDate ? '00:00:00' : '23:59:59'}`;
-        timeFormatDisplay = isStartDate ? '00:00:00' : '23:59:59';
         break;
       case YEAR_PICKER_TYPE.MONTH:
         formatDisplay = 'MM/YYYY';
@@ -405,6 +398,7 @@ export const AdvancedPicker: React.FC<AdvancedPickerProps> = props => {
         args: {},
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [propsOption, propsDate, format]);
 
   // Handlers

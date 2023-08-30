@@ -2,10 +2,10 @@
 import styled from 'styled-components';
 
 // Components
-import { Tag } from 'src/components/atoms/Tag';
+import { Tag } from '../../atoms';
 
 // Constants
-import { THEME } from 'src/constants';
+import { THEME } from '../../../constants';
 
 export const StyledTag = styled(Tag)`
   position: relative;

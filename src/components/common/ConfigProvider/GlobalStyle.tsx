@@ -5,6 +5,14 @@ import { Global, css } from '@emotion/react';
 // Constants
 import { THEME } from 'src/constants';
 
+// FontAwesome
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+
+library.add(fas, far, fab);
+
 interface GlobalStyleProps {}
 
 export const GlobalStyle: React.FC<GlobalStyleProps> = () => (
@@ -30,6 +38,10 @@ export const GlobalStyle: React.FC<GlobalStyleProps> = () => (
           border-color: ${THEME.token?.blue3} !important;
           background-color: ${THEME.token?.blue} !important;
         }
+        &:not(:disabled).antsomi-btn-default-active {
+          border-color: ${THEME.token?.colorPrimary} !important;
+          background-color: ${THEME.token?.blue1_1} !important;
+        }
 
         &.antsomi-btn-dangerous {
           border-color: ${THEME.token?.red2} !important;
@@ -38,6 +50,11 @@ export const GlobalStyle: React.FC<GlobalStyleProps> = () => (
             border-color: ${THEME.token?.red3} !important;
             background-color: ${THEME.token?.red} !important;
           }
+        }
+
+        &.antsomi-btn-icon-only {
+          width: 36px !important;
+          height: 36px !important;
         }
       }
 
@@ -250,6 +267,206 @@ export const GlobalStyle: React.FC<GlobalStyleProps> = () => (
           > .antsomi-picker-panel-layout
           > .antsomi-picker-panel {
           padding-bottom: 80px;
+        }
+      }
+
+      // Slider
+      .antsomi-slider {
+        margin: 0 !important;
+
+        &.antsomi-slider-horizontal {
+          .antsomi-slider-rail,
+          .antsomi-slider-step {
+            height: 4px;
+            width: 100%;
+          }
+
+          .antsomi-slider-rail {
+            height: 4px;
+          }
+        }
+
+        .antsomi-slider-rail,
+        .antsomi-slider-step {
+          position: absolute !important;
+        }
+
+        .antsomi-slider-rail {
+          border-radius: 2px !important;
+          transition: background-color 0.3s !important;
+          background-color: ${THEME.token?.accent1} !important;
+        }
+
+        .antsomi-slider-track {
+          position: absolute !important;
+          border-radius: 2px !important;
+          transition: background-color 0.3s !important;
+          background-color: ${THEME.token?.colorPrimary} !important;
+        }
+
+        .antsomi-slider-step {
+          background: 0 0 !important;
+          pointer-events: none !important;
+        }
+
+        .antsomi-slider-handle {
+          position: absolute !important;
+          width: 14px !important;
+          height: 14px !important;
+          margin-top: -2px;
+          background-color: #fff;
+          border-radius: 50%;
+          box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 2px 0px;
+          cursor: pointer;
+          transition: border-color 0.3s, box-shadow 0.6s,
+            transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28) !important;
+        }
+
+        .antsomi-slider-handle::before,
+        .antsomi-slider-handle::after,
+        .antsomi-slider-handle:hover::after,
+        .antsomi-slider-handle:focus::before,
+        .antsomi-slider-handle:focus::after {
+          width: 14px !important;
+          height: 14px !important;
+          box-shadow: none !important;
+          inset-block-start: 0 !important;
+          inset-inline-start: 0 !important;
+        }
+
+        .antsomi-slider-handle::after {
+          background-color: ${THEME.token?.colorPrimary} !important;
+        }
+
+        &:hover {
+          .antsomi-slider-track {
+            background-color: ${THEME.token?.colorPrimary} !important;
+          }
+
+          .antsomi-slider-rail {
+            background-color: ${THEME.token?.accent1} !important;
+          }
+
+          .antsomi-slider-handle::after {
+            box-shadow: none !important;
+          }
+
+          .antsomi-slider-handle {
+            border-color: ${THEME.token?.colorPrimary} !important;
+          }
+        }
+
+        &.antsomi-slider-with-marks {
+          margin-bottom: 0 !important;
+        }
+
+        &.antsomi-slider-disabled {
+          .antsomi-slider-handle {
+            background-color: ${THEME.token?.accent2} !important;
+            border-color: ${THEME.token?.accent2} !important;
+          }
+        }
+      }
+
+      /* Radio */
+      .antsomi-radio-group-outline {
+        .antsomi-radio-button-wrapper {
+          display: inline-flex;
+          align-items: center;
+          height: 30px;
+          padding-left: 20px;
+          padding-right: 20px;
+          font-family: 'Roboto';
+          color: ${THEME.token?.colorTextBase};
+          font-size: ${THEME.token?.fontSize}px;
+
+          &:focus-within {
+            --tw-shadow: 0 0 #0000;
+            --tw-shadow-colored: 0 0 #0000;
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
+              var(--tw-shadow);
+          }
+
+          &:first-child {
+            border-top-left-radius: ${THEME.token?.borderRadius}px;
+            border-bottom-left-radius: ${THEME.token?.borderRadius}px;
+          }
+
+          &:last-child {
+            border-top-right-radius: ${THEME.token?.borderRadius}px;
+            border-bottom-right-radius: ${THEME.token?.borderRadius}px;
+          }
+
+          &.antsomi-radio-button-wrapper-checked {
+            border-color: ${THEME.token?.accent1};
+            background-color: ${THEME.token?.colorTextActive};
+            color: ${THEME.token?.colorPrimary};
+            font-weight: 700;
+
+            &::before {
+              background-color: ${THEME.token?.accent1};
+            }
+          }
+        }
+
+        .antsomi-radio-wrapper {
+          font-family: 'Roboto';
+          color: ${THEME.token?.colorTextBase};
+          font-size: ${THEME.token?.fontSize}px;
+          margin-right: 0;
+
+          .antsomi-radio-checked .antsomi-radio-inner::after {
+            transform: scale(0.6);
+          }
+
+          .antsomi-radio {
+            .antsomi-radio-inner {
+              width: 16px;
+              height: 16px;
+              border-color: ${THEME.token?.colorPrimary};
+              border-width: 2px;
+              background-color: ${THEME.token?.bw0};
+
+              &::after {
+                background-color: ${THEME.token?.colorPrimary};
+              }
+            }
+          }
+
+          &:not(:last-child) {
+            margin-right: 30px;
+          }
+        }
+      }
+
+      /* Modal Close */
+      .antsomi-modal .antsomi-modal-close {
+        width: unset !important;
+        height: unset !important;
+        top: 0px !important;
+        right: 0 !important;
+      }
+      .antsomi-modal-content {
+        .antsomi-modal-header {
+          .antsomi-modal-title {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 22px;
+            word-wrap: break-word;
+          }
+        }
+        .antsomi-modal-body {
+          font-size: 14px !important;
+          p {
+            margin: 0;
+          }
+        }
+        .antsomi-modal-footer {
+          padding: 10px 16px;
+          text-align: right;
+          background: transparent;
+          border-top: 1px solid #f0f0f0;
+          border-radius: 0 0 2px 2px;
         }
       }
     `}

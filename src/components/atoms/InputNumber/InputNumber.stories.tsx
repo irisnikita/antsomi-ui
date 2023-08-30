@@ -5,11 +5,8 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 // Components
 import { InputNumber } from './InputNumber';
-import { Space } from 'src/components/atoms/Space';
-import { Checkbox } from 'src/components/atoms/Checkbox';
-import { Button } from 'src/components/atoms/Button';
-import { Cascader } from 'src/components/molecules/Cascader';
-import { Select } from 'src/components/molecules/Select';
+import { Space, Checkbox, Button } from '..';
+import { Cascader, Select } from '../../molecules';
 
 // Types
 import Icon from '@antscorp/icons';

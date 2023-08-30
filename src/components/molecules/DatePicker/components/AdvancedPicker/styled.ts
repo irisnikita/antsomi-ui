@@ -1,5 +1,5 @@
 // Libraries
-import { THEME } from 'src/constants';
+import { THEME } from '../../../../../constants';
 import styled from 'styled-components';
 
 export const DropdownContent = styled.div`

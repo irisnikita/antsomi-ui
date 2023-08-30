@@ -1,10 +1,23 @@
-export { Alert } from './Alert';
 export { Cascader } from './Cascader';
 export { Dropdown } from './Dropdown';
 export { Modal } from './Modal';
 export { Select } from './Select';
-export { CustomComponent } from './CustomComponent';
 export { DatePicker } from './DatePicker';
+export { ChatBox } from './ChatBox';
+export { PopupDraggable } from './PopupDraggable';
+export { Tabs } from './Tabs';
+export { CaptureScreen } from './CaptureScreen';
+export { SettingWrapper } from './SettingWrapper';
+export { ColorPicker } from './ColorPicker';
+export { ColorSetting } from './ColorSetting';
+export { SliderWithInputNumber } from './SliderWithInputNumber';
+export { RadioGroup } from './RadioGroup';
+export { InputSearch } from './InputSearch';
+export { UploadImage } from './UploadImage';
+export { IconSelection } from './IconSelection';
+export { AlignSetting } from './AlignSetting';
+export { EdgeSetting } from './EdgeSetting';
+export { TreeSelect } from './TreeSelect';
 
 // Types
 export type {
@@ -12,3 +25,5 @@ export type {
   TAdvancedPickerOption,
   TAdvancedRangePickerTimeRange,
 } from './DatePicker';
+export type { ColorPickerProps } from './ColorPicker';
+export type { AlignEditProps, AlignSettingProps } from './AlignSetting';

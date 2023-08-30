@@ -5,14 +5,17 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 // Components
 import { Checkbox } from './Checkbox';
-import { Button, Divider } from '../../index';
+import { Button, Divider, Table, Tag } from '../../index';
 
 // Icons
-import Icon from '@antscorp/icons';
+// import Icon from '@antscorp/icons';
 
 // Types
 import { CheckboxValueType } from 'antd/es/checkbox/Group';
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
+
+// Constant
+import { TABLE_API_COLUMNS } from '../../../constants';
 
 export default {
   title: 'Atoms/Checkbox',
@@ -94,7 +97,7 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: `
+        component: ` 
   - Used for selecting multiple values from several options.
   - If you use only one checkbox, it is the same as using Switch to toggle between two states. The difference is that Switch will trigger the state change directly, but Checkbox just marks the state as changed and this needs to be submitted.
         `,
@@ -104,21 +107,21 @@ export default {
 } as ComponentMeta<typeof Checkbox>;
 
 // Variables
-const exampleIcon = <Icon type="icon-ants-search-2" />;
-const items = [
-  {
-    key: '1',
-    label: '1st item',
-  },
-  {
-    key: '2',
-    label: '2nd item',
-  },
-  {
-    key: '3',
-    label: '3rd item',
-  },
-];
+// const exampleIcon = <Icon type="icon-ants-search-2" />;
+// const items = [
+//   {
+//     key: '1',
+//     label: '1st item',
+//   },
+//   {
+//     key: '2',
+//     label: '2nd item',
+//   },
+//   {
+//     key: '3',
+//     label: '3rd item',
+//   },
+// ];
 
 // Default
 const Template: ComponentStory<typeof Checkbox> = args => <Checkbox {...args} />;
@@ -287,6 +290,72 @@ CheckboxGroup.parameters = {
   docs: {
     description: {
       story: 'Generate a group of checkboxes from an array.',
+    },
+  },
+};
+
+export const CheckboxGroupAPI: ComponentStory<any> = () => {
+  const dataSource = [
+    {
+      key: '1',
+      property: 'defaultValue',
+      description: 'Default selected value',
+      type: '(string | number)[ ]',
+      default: '[ ]',
+    },
+    {
+      key: '2',
+      property: 'disabled',
+      description: 'If disable all checkboxes',
+      type: 'boolean',
+      default: 'false',
+    },
+    {
+      key: '3',
+      property: 'name',
+      description: (
+        <>
+          {' '}
+          The <Tag style={{ marginRight: '0' }}>name</Tag> property of all
+          input[type=&quot;checkbox&quot;] children
+        </>
+      ),
+      type: 'string',
+      default: '-',
+    },
+    {
+      key: '4',
+      property: 'options',
+      description: 'Specifies options',
+      type: 'string[ ] | number[ ] | Option[ ]',
+      default: '[ ]',
+    },
+    {
+      key: '5',
+      property: 'value',
+      description: 'Used for setting the currently selected value',
+      type: '(string | number | boolean)[ ]',
+      default: '[ ]',
+    },
+    {
+      key: '6',
+      property: 'onChange',
+      description: 'The callback function that is triggered when the state changes',
+      type: '(checkedValue: CheckboxValueType[ ]) => void',
+      default: '-',
+    },
+  ];
+
+  return <Table dataSource={dataSource} columns={TABLE_API_COLUMNS} pagination={false} />;
+};
+
+CheckboxGroupAPI.parameters = {
+  docs: {
+    description: {
+      story: '',
+    },
+    source: {
+      code: null,
     },
   },
 };

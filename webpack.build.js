@@ -21,7 +21,7 @@ module.exports = {
     rules: [
       {
         test: /\.(ts|tsx)$/,
-        exclude: /node_modules/,
+        exclude: [/node_modules/],
         use: [
           {
             loader: 'babel-loader',
@@ -42,6 +42,13 @@ module.exports = {
         test: /\.scss$/,
         exclude: /\.module.(scss)$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '/public/icons/[name].[ext]',
+        },
       },
       // {
       //   type: 'javascript/auto',

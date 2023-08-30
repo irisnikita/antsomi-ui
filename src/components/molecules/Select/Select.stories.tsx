@@ -5,7 +5,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 // Components
 import { Select, SelectProps } from './Select';
-import { Space } from 'src/components/atoms/Space';
+import { Space } from '../../atoms/Space';
 
 export default {
   title: 'Molecules/Select',
